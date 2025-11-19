@@ -1,9 +1,9 @@
 <?php
 /**
  * Funciones del tema Anima Avatar
- * Versión Master 1.1.1 (Final)
+ * Versión Master 1.1.2 (Final)
  */
-define( 'ANIMAAVATAR_VERSION', '1.1.1' );
+define( 'ANIMAAVATAR_VERSION', '1.1.2' );
 
 // Registrar hooks base del tema
 action_hook_setup();

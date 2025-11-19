@@ -2,88 +2,106 @@
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function () {
-        var toggle = document.querySelector('.nav-toggle');
-        var menuContainer = document.getElementById('primary-menu-container');
-        var megaItems = [];
 
-        var closeMegaMenus = function () {
-            if (!megaItems.length) {
-                return;
-            }
+        /* =========================================
+           MENÚ MÓVIL & MEGA MENÚ
+           ========================================= */
+        var menuToggle = document.querySelector('.menu-toggle');
+        var mainNavigation = document.querySelector('.main-navigation');
+        var siteHeader = document.querySelector('.site-header');
+        var body = document.body;
 
-            megaItems.forEach(function (item) {
-                item.classList.remove('is-open');
-                var megaToggle = item.querySelector('.menu-link--mega');
-                var panel = item.querySelector('.mega-menu');
-
-                if (megaToggle) {
-                    megaToggle.setAttribute('aria-expanded', 'false');
-                }
-
-                if (panel) {
-                    panel.setAttribute('aria-hidden', 'true');
-                }
-            });
-        };
-
-        if (toggle && menuContainer) {
-            var mq = window.matchMedia('(min-width: 961px)');
-
-            var updateMenu = function (expanded) {
-                toggle.setAttribute('aria-expanded', String(expanded));
-                menuContainer.classList.toggle('is-open', expanded);
-                menuContainer.setAttribute('aria-hidden', expanded ? 'false' : 'true');
-            };
-
-            var syncWithMedia = function (event) {
-                if (event.matches) {
-                    menuContainer.classList.add('is-open');
-                    toggle.setAttribute('aria-expanded', 'true');
-                    menuContainer.setAttribute('aria-hidden', 'false');
-                } else {
-                    updateMenu(false);
-                    closeMegaMenus();
-                }
-            };
-
-            menuContainer.setAttribute('aria-hidden', 'true');
-            syncWithMedia(mq);
-
-            if (typeof mq.addEventListener === 'function') {
-                mq.addEventListener('change', syncWithMedia);
-            } else if (typeof mq.addListener === 'function') {
-                mq.addListener(syncWithMedia);
-            }
-
-            toggle.addEventListener('click', function () {
+        // Toggle del Menú Móvil
+        if (menuToggle && mainNavigation) {
+            menuToggle.addEventListener('click', function () {
                 var isExpanded = this.getAttribute('aria-expanded') === 'true';
-                updateMenu(!isExpanded);
+                this.setAttribute('aria-expanded', !isExpanded);
+                mainNavigation.classList.toggle('toggled');
+                body.classList.toggle('no-scroll'); // Bloquear scroll del fondo
+            });
 
-                if (isExpanded) {
-                    closeMegaMenus();
+            // Cerrar menú al hacer clic fuera (en el fondo oscurecido si lo hubiera)
+            document.addEventListener('click', function (event) {
+                if (mainNavigation.classList.contains('toggled') &&
+                    !mainNavigation.contains(event.target) &&
+                    !menuToggle.contains(event.target)) {
+
+                    mainNavigation.classList.remove('toggled');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('no-scroll');
                 }
             });
         }
 
-        var header = document.querySelector('.site-header');
-        if (header) {
+        // Submenús en Móvil (Acordeón)
+        var parentItems = document.querySelectorAll('.menu-item-has-children > a');
+        parentItems.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                // Solo actuar como toggle si estamos en vista móvil (menos de 992px)
+                if (window.innerWidth <= 992) {
+                    e.preventDefault(); // Evitar navegar al link padre
+                    var parent = this.parentElement;
+                    var subMenu = parent.querySelector('.sub-menu');
+
+                    // Toggle clase para girar flechitas si las hubiera
+                    parent.classList.toggle('toggled');
+
+                    // Toggle visibilidad del submenú
+                    if (subMenu) {
+                        if (subMenu.style.display === 'block') {
+                            subMenu.style.display = 'none';
+                        } else {
+                            subMenu.style.display = 'block';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Resetear estilos al cambiar tamaño de ventana a escritorio
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 992) {
+                if (mainNavigation && mainNavigation.classList.contains('toggled')) {
+                    mainNavigation.classList.remove('toggled');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('no-scroll');
+                }
+                // Restaurar submenús
+                document.querySelectorAll('.sub-menu').forEach(function (sm) {
+                    sm.style.display = ''; // Quitar estilos inline
+                });
+                document.querySelectorAll('.menu-item-has-children').forEach(function (li) {
+                    li.classList.remove('toggled');
+                });
+            }
+        });
+
+
+        /* =========================================
+           HEADER SCROLL (Efecto pegajoso)
+           ========================================= */
+        if (siteHeader) {
             var lastScroll = 0;
             var ticking = false;
 
             var handleHeaderScroll = function () {
                 var current = window.pageYOffset || document.documentElement.scrollTop;
 
-                if (current > 12) {
-                    header.classList.add('site-header--scrolled');
+                // Añadir sombra/fondo al hacer scroll
+                if (current > 10) {
+                    siteHeader.classList.add('site-header--scrolled');
                 } else {
-                    header.classList.remove('site-header--scrolled');
+                    siteHeader.classList.remove('site-header--scrolled');
                 }
 
-                if (current > lastScroll && current > header.offsetHeight + 40) {
-                    header.classList.add('header--hidden');
-                } else if (current < lastScroll - 6 || current <= 12) {
-                    header.classList.remove('header--hidden');
+                // Opcional: Ocultar header al bajar y mostrar al subir (efecto inteligente)
+                /*
+                if (current > lastScroll && current > siteHeader.offsetHeight + 40) {
+                    siteHeader.classList.add('header--hidden');
+                } else if (current < lastScroll - 5) {
+                    siteHeader.classList.remove('header--hidden');
                 }
+                */
 
                 lastScroll = current <= 0 ? 0 : current;
                 ticking = false;
@@ -95,110 +113,12 @@
                     ticking = true;
                 }
             });
-
-            handleHeaderScroll();
         }
 
-        megaItems = Array.prototype.slice.call(document.querySelectorAll('.menu-item--mega'));
 
-        if (megaItems.length) {
-            closeMegaMenus();
-
-            var desktopMq = window.matchMedia('(min-width: 961px)');
-
-            megaItems.forEach(function (item) {
-                var megaToggle = item.querySelector('.menu-link--mega');
-                var panel = item.querySelector('.mega-menu');
-                var hideTimeout = null;
-
-                if (!megaToggle || !panel) {
-                    return;
-                }
-
-                var openMega = function () {
-                    closeMegaMenus();
-                    item.classList.add('is-open');
-                    megaToggle.setAttribute('aria-expanded', 'true');
-                    panel.setAttribute('aria-hidden', 'false');
-                };
-
-                var closeMega = function () {
-                    item.classList.remove('is-open');
-                    megaToggle.setAttribute('aria-expanded', 'false');
-                    panel.setAttribute('aria-hidden', 'true');
-                };
-
-                megaToggle.addEventListener('click', function (event) {
-                    event.preventDefault();
-
-                    if (item.classList.contains('is-open')) {
-                        closeMega();
-                        return;
-                    }
-
-                    openMega();
-                });
-
-                item.addEventListener('mouseenter', function () {
-                    if (!desktopMq.matches) {
-                        return;
-                    }
-
-                    window.clearTimeout(hideTimeout);
-                    openMega();
-                });
-
-                item.addEventListener('mouseleave', function () {
-                    if (!desktopMq.matches) {
-                        return;
-                    }
-
-                    hideTimeout = window.setTimeout(closeMega, 120);
-                });
-
-                item.addEventListener('focusin', function () {
-                    if (!desktopMq.matches) {
-                        return;
-                    }
-
-                    window.clearTimeout(hideTimeout);
-                    openMega();
-                });
-
-                item.addEventListener('focusout', function (event) {
-                    if (!desktopMq.matches) {
-                        if (!item.contains(event.relatedTarget)) {
-                            closeMega();
-                        }
-
-                        return;
-                    }
-
-                    if (!item.contains(event.relatedTarget)) {
-                        hideTimeout = window.setTimeout(closeMega, 120);
-                    }
-                });
-            });
-
-            document.addEventListener('click', function (event) {
-                if (!event.target.closest('.menu-item--mega')) {
-                    closeMegaMenus();
-                }
-            });
-
-            window.addEventListener('keyup', function (event) {
-                if (event.key === 'Escape') {
-                    closeMegaMenus();
-                }
-            });
-
-            if (typeof desktopMq.addEventListener === 'function') {
-                desktopMq.addEventListener('change', closeMegaMenus);
-            } else if (typeof desktopMq.addListener === 'function') {
-                desktopMq.addListener(closeMegaMenus);
-            }
-        }
-
+        /* =========================================
+           ANIMACIONES AL HACER SCROLL
+           ========================================= */
         var animatedItems = document.querySelectorAll('.animate-on-scroll');
         if ('IntersectionObserver' in window) {
             var observer = new IntersectionObserver(function (entries) {
@@ -208,21 +128,23 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.15
-            });
+            }, { threshold: 0.15 });
 
             animatedItems.forEach(function (item) {
                 observer.observe(item);
             });
         } else {
+            // Fallback para navegadores antiguos
             animatedItems.forEach(function (item) {
                 item.classList.add('is-visible');
             });
         }
 
+
+        /* =========================================
+           SWIPER SLIDER (Si existe)
+           ========================================= */
         if (typeof Swiper !== 'undefined' && document.querySelector('.swiper')) {
-            // eslint-disable-next-line no-new
             new Swiper('.swiper', {
                 loop: true,
                 slidesPerView: 1,
@@ -239,158 +161,60 @@
                     delay: 5000,
                     disableOnInteraction: false
                 },
-                a11y: {
-                    enabled: true,
-                    prevSlideMessage: document.documentElement.lang === 'es' ? 'Diapositiva anterior' : 'Previous slide',
-                    nextSlideMessage: document.documentElement.lang === 'es' ? 'Diapositiva siguiente' : 'Next slide',
-                    slideRole: 'group'
-                },
                 breakpoints: {
-                    768: {
-                        slidesPerView: 2
-                    },
-                    1024: {
-                        slidesPerView: 3
-                    }
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 }
                 }
             });
         }
 
-        var avatarModal = document.querySelector('[data-avatar-modal]');
-        if (avatarModal) {
-            avatarModal.setAttribute('aria-hidden', 'true');
-            var modalDialog = avatarModal.querySelector('[data-avatar-dialog]');
-            var modalContent = avatarModal.querySelector('[data-avatar-content]');
-            var openButtons = document.querySelectorAll('[data-avatar-modal-open]');
-            var focusableSelectors = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
-            var focusableElements = [];
-            var previousFocus = null;
 
-            if (modalDialog) {
-                modalDialog.setAttribute('tabindex', '-1');
-            }
+        /* =========================================
+           MODAL VISOR 3D (Para page-assets.php)
+           ========================================= */
+        // Este código maneja el modal que añadimos en la galería de assets
+        const glbModal = document.getElementById('anima-glb-modal');
+        const modelViewer = document.getElementById('anima-model-viewer');
+        const modalTitle = document.getElementById('anima-glb-modal-title');
 
-            var setFocusableElements = function () {
-                if (!modalDialog) {
-                    focusableElements = [];
-                    return;
-                }
+        if (glbModal && modelViewer) {
+            // Abrir modal
+            document.querySelectorAll('.js-open-glb-viewer').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const glbUrl = this.dataset.glbUrl;
+                    const assetTitle = this.dataset.title;
 
-                focusableElements = Array.prototype.slice.call(modalDialog.querySelectorAll(focusableSelectors)).filter(function (element) {
-                    return !element.hasAttribute('disabled') && element.getAttribute('aria-hidden') !== 'true';
-                });
-            };
-
-            avatarModal.addEventListener('anima-model-mounted', function () {
-                setFocusableElements();
-            });
-
-            var closeModal = function () {
-                if (avatarModal.hasAttribute('hidden')) {
-                    return;
-                }
-
-                avatarModal.setAttribute('hidden', 'hidden');
-                avatarModal.setAttribute('aria-hidden', 'true');
-                avatarModal.removeAttribute('data-open');
-                document.body.classList.remove('modal-open');
-
-                if (modalContent) {
-                    modalContent.innerHTML = '';
-                }
-
-                document.removeEventListener('keydown', trapKeyDown);
-
-                if (previousFocus) {
-                    previousFocus.focus();
-                    previousFocus = null;
-                }
-            };
-
-            var trapKeyDown = function (event) {
-                if (event.key === 'Escape') {
-                    event.preventDefault();
-                    closeModal();
-                    return;
-                }
-
-                if (event.key !== 'Tab') {
-                    return;
-                }
-
-                if (!focusableElements.length) {
-                    event.preventDefault();
-                    return;
-                }
-
-                var firstFocusable = focusableElements[0];
-                var lastFocusable = focusableElements[focusableElements.length - 1];
-
-                if (event.shiftKey) {
-                    if (document.activeElement === firstFocusable || !modalDialog.contains(document.activeElement)) {
-                        event.preventDefault();
-                        lastFocusable.focus();
+                    if (glbUrl) {
+                        modelViewer.src = glbUrl;
+                        if (modalTitle) modalTitle.textContent = assetTitle;
+                        glbModal.classList.add('is-open');
+                        body.style.overflow = 'hidden'; // Bloquear scroll
                     }
-                } else if (document.activeElement === lastFocusable) {
-                    event.preventDefault();
-                    firstFocusable.focus();
-                }
-            };
-
-            var openModal = function (templateId) {
-                if (!modalDialog || !modalContent) {
-                    return;
-                }
-
-                var template = document.getElementById(templateId);
-                if (!template || !('content' in template)) {
-                    return;
-                }
-
-                modalContent.innerHTML = '';
-                modalContent.appendChild(template.content.cloneNode(true));
-
-                avatarModal.removeAttribute('hidden');
-                avatarModal.setAttribute('data-open', 'true');
-                avatarModal.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('modal-open');
-                previousFocus = document.activeElement;
-
-                if (window.AnimaModelViewer && typeof window.AnimaModelViewer.mountAll === 'function') {
-                    window.AnimaModelViewer.mountAll(modalDialog);
-                }
-
-                setFocusableElements();
-
-                document.addEventListener('keydown', trapKeyDown);
-
-                if (focusableElements.length) {
-                    focusableElements[0].focus();
-                } else {
-                    modalDialog.focus();
-                }
-            };
-
-            openButtons.forEach(function (button) {
-                button.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    var templateId = button.getAttribute('data-avatar-modal-open');
-                    openModal(templateId);
                 });
             });
 
-            avatarModal.addEventListener('click', function (event) {
-                if (event.target === avatarModal) {
-                    closeModal();
-                }
+            // Cerrar modal (botón X o clic fuera)
+            const closeModal = () => {
+                glbModal.classList.remove('is-open');
+                body.style.overflow = ''; // Restaurar scroll
+                // Pequeño delay para limpiar el src y no ver el parpadeo
+                setTimeout(() => {
+                    modelViewer.src = '';
+                    if (modalTitle) modalTitle.textContent = '';
+                }, 300);
+            };
+
+            document.querySelectorAll('.js-close-modal').forEach(btn => btn.addEventListener('click', closeModal));
+
+            glbModal.addEventListener('click', function (e) {
+                if (e.target === glbModal) closeModal();
             });
 
-            avatarModal.addEventListener('click', function (event) {
-                if (event.target && event.target.matches('[data-avatar-modal-close]')) {
-                    event.preventDefault();
-                    closeModal();
-                }
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && glbModal.classList.contains('is-open')) closeModal();
             });
         }
+
     });
 })();
