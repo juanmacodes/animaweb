@@ -1,0 +1,182 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "palette": [
+        {
+          "name": "Fondo",
+          "slug": "background",
+          "color": "#05070c"
+        },
+        {
+          "name": "Superficie",
+          "slug": "surface",
+          "color": "#10182b"
+        },
+        {
+          "name": "Texto",
+          "slug": "foreground",
+          "color": "#f4f7ff"
+        },
+        {
+          "name": "Texto secundario",
+          "slug": "muted",
+          "color": "#c3cdec"
+        },
+        {
+          "name": "Acento",
+          "slug": "accent",
+          "color": "#66f7ff"
+        },
+        {
+          "name": "Morado",
+          "slug": "accent-alt",
+          "color": "#9f7bff"
+        },
+        {
+          "name": "Magenta",
+          "slug": "accent-hot",
+          "color": "#ff72e1"
+        }
+      ],
+      "gradients": [
+        {
+          "name": "Hero Plasma",
+          "slug": "hero-plasma",
+          "gradient": "radial-gradient(circle at 20% 15%, rgba(102,247,255,0.28) 0%, rgba(5,7,12,0) 58%), radial-gradient(circle at 82% 30%, rgba(159,123,255,0.32) 0%, rgba(5,7,12,0) 62%)"
+        }
+      ]
+    },
+    "spacing": {
+      "blockGap": "1.75rem",
+      "units": ["px", "rem", "%", "vw", "vh"],
+      "spacingScale": {
+        "steps": 0,
+        "mediumStep": 1.5,
+        "unit": "rem"
+      }
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Inter, 'Inter var', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+          "name": "Inter",
+          "slug": "inter"
+        },
+        {
+          "fontFamily": "'Space Grotesk', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+          "name": "Space Grotesk",
+          "slug": "space-grotesk"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "xs",
+          "size": "0.875rem",
+          "name": "XS"
+        },
+        {
+          "slug": "sm",
+          "size": "1rem",
+          "name": "S"
+        },
+        {
+          "slug": "md",
+          "size": "1.125rem",
+          "name": "M"
+        },
+        {
+          "slug": "lg",
+          "size": "1.5rem",
+          "name": "L"
+        },
+        {
+          "slug": "xl",
+          "size": "2.5rem",
+          "name": "XL"
+        },
+        {
+          "slug": "xxl",
+          "size": "3.75rem",
+          "name": "XXL"
+        }
+      ],
+      "fluid": true,
+      "dropCap": false
+    },
+    "border": {
+      "radius": 16
+    },
+    "layout": {
+      "contentSize": "720px",
+      "wideSize": "1160px",
+      "allowEditing": false
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#05070c",
+      "text": "#f4f7ff",
+      "link": "#66f7ff"
+    },
+    "elements": {
+      "button": {
+        "border": {
+          "radius": "999px"
+        },
+        "typography": {
+          "fontWeight": "600",
+          "letterSpacing": "0.04em"
+        }
+      },
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--space-grotesk)",
+          "fontWeight": "700",
+          "lineHeight": "1.15"
+        }
+      },
+      "link": {
+        "typography": {
+          "fontWeight": "500"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--accent)"
+        }
+      }
+    },
+    "blocks": {
+      "core/navigation": {
+        "spacing": {
+          "padding": {
+            "top": "0.75rem",
+            "bottom": "0.75rem"
+          }
+        }
+      },
+      "core/group": {
+        "border": {
+          "radius": "16px"
+        }
+      },
+      "core/site-title": {
+        "typography": {
+          "textTransform": "uppercase",
+          "letterSpacing": "0.12em"
+        }
+      },
+      "core/heading": {
+        "typography": {
+          "fontWeight": "700"
+        },
+        "spacing": {
+          "margin": {
+            "bottom": "1rem"
+          }
+        }
+      }
+    }
+  }
+}
