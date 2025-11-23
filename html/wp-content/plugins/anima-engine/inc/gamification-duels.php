@@ -249,6 +249,11 @@ class Anima_Gamification_Duels
         // Set cookie
         setcookie('anima_voted_' . $duel_id, '1', time() + 86400, COOKIEPATH, COOKIE_DOMAIN);
 
+        // Award Karma (if logged in)
+        if (is_user_logged_in()) {
+            do_action('anima_style_duel_vote', get_current_user_id());
+        }
+
         // Return new stats
         $v1 = (int) get_post_meta($duel_id, 'contender_1_votes', true);
         $v2 = (int) get_post_meta($duel_id, 'contender_2_votes', true);

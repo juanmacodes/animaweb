@@ -65,25 +65,12 @@ final class Anima_Engine_Core
 
         $pro_panel = ANIMA_ENGINE_PATH . 'inc/admin-pro-panel.php';
         if (file_exists($pro_panel))
-            require_once($pro_panel);
-
-        $ai_manager = ANIMA_ENGINE_PATH . 'inc/ai-manager.php';
-        if (file_exists($ai_manager))
-            require_once($ai_manager);
-
-        $gamification = ANIMA_ENGINE_PATH . 'inc/gamification-duels.php';
-        if (file_exists($gamification))
-            require_once($gamification);
-    }
-
-    public function register_widgets($widgets_manager)
-    {
-        $widgets = [
-            '/elementor/widget-cursos-grid.php' => '\Anima\Engine\Elementor\Widget_Cursos_Grid',
-            '/elementor/widget-agent-hud.php' => '\Anima\Engine\Elementor\Widget_Agent_HUD',
-            '/elementor/widget-tech-tracks.php' => '\Anima\Engine\Elementor\Widget_Tech_Tracks',
-            '/elementor/widget-active-protocol.php' => '\Anima\Engine\Elementor\Widget_Active_Protocol'
-        ];
+            $widgets = [
+                '/elementor/widget-cursos-grid.php' => '\Anima\Engine\Elementor\Widget_Cursos_Grid',
+                '/elementor/widget-agent-hud.php' => '\Anima\Engine\Elementor\Widget_Agent_HUD',
+                '/elementor/widget-tech-tracks.php' => '\Anima\Engine\Elementor\Widget_Tech_Tracks',
+                '/elementor/widget-active-protocol.php' => '\Anima\Engine\Elementor\Widget_Active_Protocol'
+            ];
 
         foreach ($widgets as $file => $class) {
             if (file_exists(__DIR__ . $file)) {

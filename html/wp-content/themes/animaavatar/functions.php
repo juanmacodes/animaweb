@@ -338,20 +338,6 @@ if (!function_exists('anima_nexus_submit_post_frontend')) {
 
 		if (!is_wp_error($post_id)) {
 			// Guardar metadatos
-			update_post_meta($post_id, '_anima_nexus_message_type', $message_type);
-
-			if ($message_type === 'evento') {
-				update_post_meta($post_id, '_anima_nexus_event_date', $event_date);
-				update_post_meta($post_id, '_anima_nexus_event_location', $event_location);
-				// CORRECCIÓN: Se usaba $event_url incorrectamente, se cambia a la variable correcta $event_link
-				update_post_meta($post_id, '_anima_nexus_event_link', $event_link);
-			}
-			// Redirigir con éxito
-			wp_redirect(add_query_arg('status', 'success', home_url('/comunidad/'))); // Ajusta la URL
-			exit;
-		} else {
-			// Redirigir con error de inserción
-			wp_redirect(add_query_arg('status', 'error_insert', home_url('/comunidad/'))); // Ajusta la URL
 			exit;
 		}
 	}
