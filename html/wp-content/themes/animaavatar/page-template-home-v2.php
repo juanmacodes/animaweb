@@ -16,19 +16,6 @@ $img_live = "https://picsum.photos/seed/livevr3/800/600";
 $img_world = "https://picsum.photos/seed/worldvr3/800/600";
 $img_academy = "https://picsum.photos/seed/academy3/800/600";
 $img_ai = "https://picsum.photos/seed/ailab3/800/600";
-?>
-
-<div id="primary" class="content-area anima-home-v11">
-    <main id="main" class="site-main">
-
-        <section id="hero-core" class="hero-fullscreen">
-            <!-- 3D Avatar Tester Container -->
-            <div id="hero-canvas-container" class="hero-canvas" style="position: absolute; inset: 0; z-index: 1;"></div>
-
-            <!-- Fallback/Overlay for atmosphere -->
-            <div class="overlay-vignette"></div>
-            <div class="overlay-particles">
-                <div class="p-light p1"></div>
                 <div class="p-light p2"></div>
                 <div class="p-light p3"></div>
 

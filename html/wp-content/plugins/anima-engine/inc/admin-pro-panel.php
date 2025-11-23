@@ -104,6 +104,7 @@ class Anima_Pro_Panel
                 <a href="#ai-assistants" class="nav-tab">Asistentes IA</a>
                 <a href="#minigames" class="nav-tab">Minijuegos</a>
                 <a href="#mobile" class="nav-tab">Móvil y Visuales</a>
+                <a href="#unreal-editor" class="nav-tab">Unreal Editor</a>
             </h2>
 
             <div id="overview" class="anima-tab-content active">
@@ -318,6 +319,96 @@ class Anima_Pro_Panel
                     <button type="submit" class="button button-primary button-large">Guardar Visuales</button>
                 </form>
             </div>
+            <div id="unreal-editor" class="anima-tab-content">
+                <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
+                    <input type="hidden" name="action" value="anima_save_pro_settings">
+                    <input type="hidden" name="settings_group" value="unreal">
+                    <?php wp_nonce_field('anima_pro_settings_verify'); ?>
+
+                    <div class="anima-card">
+                        <h3>Core Assets</h3>
+                        <p>
+                            <label>3D Model URL (.glb / .gltf):</label><br>
+                            <input type="url" name="unreal_model_url"
+                                value="<?php echo esc_attr(get_option('anima_unreal_model_url', 'https://models.readyplayer.me/64d61e9e17d0505b63025255.glb')); ?>"
+                                class="large-text" placeholder="https://...">
+                        </p>
+                        <p>
+                            <label>Poster Image (Loading):</label><br>
+                            <input type="url" name="unreal_poster_url"
+                                value="<?php echo esc_attr(get_option('anima_unreal_poster_url', '')); ?>" class="large-text"
+                                placeholder="https://...">
+                        </p>
+                    </div>
+
+                    <div class="anima-card">
+                        <h3>Environment & Lighting</h3>
+                        <p>
+                            <label>Skybox Image (HDR/Equirectangular):</label><br>
+                            <input type="url" name="unreal_skybox_url"
+                                value="<?php echo esc_attr(get_option('anima_unreal_skybox_url', '')); ?>" class="large-text"
+                                placeholder="Leave empty for default lighting">
+                        </p>
+                        <div style="display:flex; gap:20px;">
+                            <p>
+                                <label>Exposure:</label><br>
+                                <input type="number" name="unreal_exposure" step="0.1"
+                                    value="<?php echo esc_attr(get_option('anima_unreal_exposure', '1.0')); ?>"
+                                    class="small-text">
+                            </p>
+                            <p>
+                                <label>Shadow Intensity:</label><br>
+                                <input type="number" name="unreal_shadow_intensity" step="0.1"
+                                    value="<?php echo esc_attr(get_option('anima_unreal_shadow_intensity', '1.0')); ?>"
+                                    class="small-text">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="anima-card">
+                        <h3>Camera Control</h3>
+                        <p>
+                            <label>
+                                <input type="checkbox" name="unreal_auto_rotate" value="1" <?php checked(get_option('anima_unreal_auto_rotate', 1), 1); ?>>
+                                Enable Auto-Rotate
+                            </label>
+                        </p>
+                        <div style="display:flex; gap:20px;">
+                            <p>
+                                <label>Field of View (FOV):</label><br>
+                                <input type="text" name="unreal_fov"
+                                    value="<?php echo esc_attr(get_option('anima_unreal_fov', '30deg')); ?>" class="small-text">
+                            </p>
+                            <p>
+                                <label>Camera Orbit (Start):</label><br>
+                                <input type="text" name="unreal_orbit"
+                                    value="<?php echo esc_attr(get_option('anima_unreal_orbit', '0deg 90deg 2.5m')); ?>"
+                                    class="regular-text">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="anima-card">
+                        <h3>Visuals</h3>
+                        <p>
+                            <label>Background Color (Hex):</label><br>
+                            <input type="color" name="unreal_bg_color"
+                                value="<?php echo esc_attr(get_option('anima_unreal_bg_color', '#000000')); ?>">
+                        </p>
+                        <p>
+                            <label>Interaction Prompt:</label><br>
+                            <select name="unreal_prompt">
+                                <option value="auto" <?php selected(get_option('anima_unreal_prompt', 'auto'), 'auto'); ?>>Auto
+                                </option>
+                                <option value="none" <?php selected(get_option('anima_unreal_prompt', 'auto'), 'none'); ?>>None
+                                </option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <button type="submit" class="button button-primary button-large">Save Unreal Config</button>
+                </form>
+            </div>
             <?php
     }
 
@@ -375,6 +466,20 @@ class Anima_Pro_Panel
             update_option('anima_runner_speed', floatval($_POST['runner_speed']));
             update_option('anima_rain_speed', floatval($_POST['rain_speed']));
             $redirect_tab = 'minigames';
+        } elseif ($group === 'unreal') {
+            // Unreal Editor Settings
+            update_option('anima_unreal_model_url', esc_url_raw($_POST['unreal_model_url']));
+            update_option('anima_unreal_poster_url', esc_url_raw($_POST['unreal_poster_url']));
+            update_option('anima_unreal_skybox_url', esc_url_raw($_POST['unreal_skybox_url']));
+            update_option('anima_unreal_exposure', sanitize_text_field($_POST['unreal_exposure']));
+            update_option('anima_unreal_shadow_intensity', sanitize_text_field($_POST['unreal_shadow_intensity']));
+            update_option('anima_unreal_auto_rotate', isset($_POST['unreal_auto_rotate']) ? 1 : 0);
+            update_option('anima_unreal_fov', sanitize_text_field($_POST['unreal_fov']));
+            update_option('anima_unreal_orbit', sanitize_text_field($_POST['unreal_orbit']));
+            update_option('anima_unreal_bg_color', sanitize_hex_color($_POST['unreal_bg_color']));
+            update_option('anima_unreal_prompt', sanitize_text_field($_POST['unreal_prompt']));
+
+            $redirect_tab = 'unreal-editor';
         } else {
             // Mobile & Visuals
             update_option('anima_enable_orb', isset($_POST['enable_orb']) ? 1 : 0);
