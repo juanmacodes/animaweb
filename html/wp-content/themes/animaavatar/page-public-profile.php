@@ -25,13 +25,7 @@ if (!$profile_user) {
 $user_id = $profile_user->ID;
 $user_xp = get_user_meta($user_id, 'anima_xp', true) ?: 0;
 $user_credits = get_user_meta($user_id, 'anima_credits', true) ?: 0;
-$user_rank = 'Novato'; // Placeholder, se puede mejorar con una función de rangos
-if ($user_xp > 1000)
-    $user_rank = 'Hacker';
-if ($user_xp > 5000)
-    $user_rank = 'Cyber-Samurai';
-if ($user_xp > 10000)
-    $user_rank = 'Leyenda del Nexus';
+$user_rank = Anima_Karma_System::get_instance()->get_user_rank($user_id);
 
 // URL para compartir
 $profile_url = home_url('/profile/?u=' . $profile_user->user_login);
@@ -65,9 +59,38 @@ $profile_url = home_url('/profile/?u=' . $profile_user->user_login);
                 <span class="stat-value text-purple"><?php echo number_format($user_credits); ?></span>
             </div>
             <div class="stat-box">
-                <span class="stat-label">Misiones</span>
-                <span class="stat-value">0</span> <!-- Placeholder -->
+                <span class="stat-label">Nivel</span>
+                <span class="stat-value"><?php echo $user_rank; ?></span>
             </div>
+        </div>
+
+        <!-- XP Progress Bar -->
+        <?php
+        $rank_info = Anima_Karma_System::get_instance()->get_next_rank_info($user_id);
+        ?>
+        <div class="xp-progress-container">
+            <div class="xp-labels">
+                <span><?php echo $rank_info['current_rank']; ?></span>
+                <span><?php echo $rank_info['next_rank']; ?></span>
+            </div>
+            <div class="xp-bar-bg">
+                <div class="xp-bar-fill" style="width: <?php echo $rank_info['progress_percent']; ?>%;"></div>
+            </div>
+            <div class="xp-details">
+                <?php if ($rank_info['xp_needed'] > 0): ?>
+                    Faltan <?php echo number_format($rank_info['xp_needed'] - $user_xp); ?> XP para subir de nivel.
+                <?php else: ?>
+                    ¡Nivel Máximo Alcanzado!
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Rewards Shop Link -->
+        <div style="margin-bottom: 30px;">
+            <a href="<?php echo home_url('/rewards-shop/'); ?>" class="anima-btn btn-primary"
+                style="width: 100%; display: block;">
+                <span class="dashicons dashicons-cart"></span> Ir a la Tienda de Recompensas
+            </a>
         </div>
 
         <!-- Badges / Logros (Placeholder) -->

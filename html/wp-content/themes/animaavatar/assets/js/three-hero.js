@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { ARButton } from 'three/addons/webxr/ARButton.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('hero-canvas-container');
@@ -7,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Scene setup
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x0a0a12, 0.002);
+    // scene.fog = new THREE.FogExp2(0x0a0a12, 0.002); // Fog can mess up AR pass-through
 
     const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
     camera.position.z = 5;
@@ -17,7 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.xr.enabled = true; // Enable WebXR
     container.appendChild(renderer.domElement);
+
+    // AR Button
+    document.body.appendChild(ARButton.createButton(renderer));
 
     // Lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -36,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let avatar;
     let mixer;
 
-    // Placeholder URL - Replace with actual .glb file
     // Dynamic URL from WordPress Options
     const modelUrl = (typeof animaSettings !== 'undefined' && animaSettings.modelUrl)
         ? animaSettings.modelUrl
@@ -100,9 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const clock = new THREE.Clock();
 
-    function animate() {
-        requestAnimationFrame(animate);
-
+    // Use setAnimationLoop for WebXR compatibility
+    renderer.setAnimationLoop(function () {
         const delta = clock.getDelta();
 
         if (mixer) mixer.update(delta);
@@ -111,16 +114,16 @@ document.addEventListener('DOMContentLoaded', function () {
             targetRotationY = mouseX * 0.001;
             targetRotationX = mouseY * 0.001;
 
-            avatar.rotation.y += 0.05 * (targetRotationY - avatar.rotation.y);
-            // avatar.rotation.x += 0.05 * (targetRotationX - avatar.rotation.x);
+            // Only rotate if NOT in AR mode (or handle AR rotation differently)
+            if (!renderer.xr.isPresenting) {
+                avatar.rotation.y += 0.05 * (targetRotationY - avatar.rotation.y);
+            }
         }
 
         particlesMesh.rotation.y += 0.001;
 
         renderer.render(scene, camera);
-    }
-
-    animate();
+    });
 
     // Handle resize
     window.addEventListener('resize', () => {

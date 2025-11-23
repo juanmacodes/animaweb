@@ -27,6 +27,11 @@ class Anima_Karma_System
         add_action('anima_minigame_complete', array($this, 'award_karma_for_minigame'), 10, 2);
         add_action('anima_style_duel_vote', array($this, 'award_karma_for_vote'), 10, 1);
 
+        // New Hooks (Level System Expansion)
+        add_action('learndash_lesson_completed', array($this, 'award_karma_for_lesson'), 10, 1);
+        add_action('comment_post', array($this, 'award_karma_for_comment'), 10, 2);
+        add_action('woocommerce_order_status_completed', array($this, 'award_karma_for_purchase'), 10, 1);
+
         // AJAX for Minigames
         add_action('wp_ajax_anima_minigame_complete', array($this, 'handle_minigame_complete'));
     }
@@ -79,6 +84,59 @@ class Anima_Karma_System
     {
         $xp = (int) get_user_meta($user_id, 'anima_karma_xp', true);
         return $this->calculate_rank($xp);
+    }
+
+    /**
+     * Get Next Rank Info for Progress Bar
+     */
+    public function get_next_rank_info($user_id)
+    {
+        $xp = (int) get_user_meta($user_id, 'anima_karma_xp', true);
+        $ranks = array(
+            0 => 'Novato',
+            100 => 'Iniciado',
+            500 => 'Hacker',
+            1000 => 'Cyber-Agent',
+            2500 => 'Netrunner',
+            5000 => 'Neon Samurai',
+            10000 => 'Cyberlord'
+        );
+
+        $current_rank = 'Novato';
+        $next_rank = 'Max Level';
+        $xp_needed = 0;
+        $prev_threshold = 0;
+
+        foreach ($ranks as $threshold => $rank_name) {
+            if ($xp >= $threshold) {
+                $current_rank = $rank_name;
+                $prev_threshold = $threshold;
+            } else {
+                $next_rank = $rank_name;
+                $xp_needed = $threshold;
+                break;
+            }
+        }
+
+        if ($xp_needed === 0) {
+            return array(
+                'current_rank' => $current_rank,
+                'next_rank' => 'Max Level',
+                'xp_needed' => 0,
+                'progress_percent' => 100
+            );
+        }
+
+        $total_range = $xp_needed - $prev_threshold;
+        $current_progress = $xp - $prev_threshold;
+        $percent = ($current_progress / $total_range) * 100;
+
+        return array(
+            'current_rank' => $current_rank,
+            'next_rank' => $next_rank,
+            'xp_needed' => $xp_needed,
+            'progress_percent' => round($percent)
+        );
     }
 
     /**
@@ -135,6 +193,29 @@ class Anima_Karma_System
     public function award_karma_for_vote($user_id)
     {
         $this->add_karma($user_id, 5, 'Style Duel Vote');
+    }
+
+    public function award_karma_for_lesson($data)
+    {
+        $user_id = get_current_user_id();
+        $this->add_karma($user_id, 50, 'Lesson Completed');
+    }
+
+    public function award_karma_for_comment($comment_id, $comment_approved)
+    {
+        if ($comment_approved === 1) {
+            $comment = get_comment($comment_id);
+            $this->add_karma($comment->user_id, 5, 'Comment Posted');
+        }
+    }
+
+    public function award_karma_for_purchase($order_id)
+    {
+        $order = wc_get_order($order_id);
+        $user_id = $order->get_user_id();
+        $total = $order->get_total();
+        $xp = floor($total * 10); // 10 XP per currency unit
+        $this->add_karma($user_id, $xp, 'Purchase Completed');
     }
 }
 

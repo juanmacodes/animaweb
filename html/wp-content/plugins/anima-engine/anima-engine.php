@@ -43,14 +43,17 @@ final class Anima_Engine_Core
         add_action('wp_enqueue_scripts', [$this, 'enqueue_assets']);
     }
 
-    public function enqueue_assets()
-    {
-        $css_file = ANIMA_ENGINE_URL . 'assets/css/dashboard.css';
-        wp_enqueue_style('anima-dashboard-style', $css_file, [], self::VERSION);
-    }
 
     private function load_includes()
     {
+        require_once plugin_dir_path(__FILE__) . 'inc/admin-pro-panel.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/karma-system.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/ai-manager.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/gamification-duels.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/p2p-market.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/live-events.php';
+
+        // Legacy Includes
         $cpt_file_inc = ANIMA_ENGINE_PATH . 'inc/cpt-curso.php';
         if (file_exists($cpt_file_inc))
             require_once($cpt_file_inc);
@@ -62,15 +65,16 @@ final class Anima_Engine_Core
         $product_fields = ANIMA_ENGINE_PATH . 'inc/admin-product-fields.php';
         if (file_exists($product_fields))
             require_once($product_fields);
+    }
 
-        $pro_panel = ANIMA_ENGINE_PATH . 'inc/admin-pro-panel.php';
-        if (file_exists($pro_panel))
-            $widgets = [
-                '/elementor/widget-cursos-grid.php' => '\Anima\Engine\Elementor\Widget_Cursos_Grid',
-                '/elementor/widget-agent-hud.php' => '\Anima\Engine\Elementor\Widget_Agent_HUD',
-                '/elementor/widget-tech-tracks.php' => '\Anima\Engine\Elementor\Widget_Tech_Tracks',
-                '/elementor/widget-active-protocol.php' => '\Anima\Engine\Elementor\Widget_Active_Protocol'
-            ];
+    public function register_widgets($widgets_manager)
+    {
+        $widgets = [
+            '/elementor/widget-cursos-grid.php' => '\Anima\Engine\Elementor\Widget_Cursos_Grid',
+            '/elementor/widget-agent-hud.php' => '\Anima\Engine\Elementor\Widget_Agent_HUD',
+            '/elementor/widget-tech-tracks.php' => '\Anima\Engine\Elementor\Widget_Tech_Tracks',
+            '/elementor/widget-active-protocol.php' => '\Anima\Engine\Elementor\Widget_Active_Protocol'
+        ];
 
         foreach ($widgets as $file => $class) {
             if (file_exists(__DIR__ . $file)) {
