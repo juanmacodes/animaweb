@@ -54,6 +54,7 @@ final class Anima_Engine_Core
         require_once plugin_dir_path(__FILE__) . 'inc/gamification-duels.php';
         require_once plugin_dir_path(__FILE__) . 'inc/p2p-market.php';
         require_once plugin_dir_path(__FILE__) . 'inc/live-events.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/matrix-chat.php';
 
         // Legacy Includes
         $cpt_file_inc = ANIMA_ENGINE_PATH . 'inc/cpt-curso.php';

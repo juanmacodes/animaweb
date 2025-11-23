@@ -10,8 +10,99 @@ class Anima_AI_Manager
         add_shortcode('anima_ai', [$this, 'render_shortcode']);
         add_action('wp_ajax_anima_ai_chat', [$this, 'handle_chat']);
         add_action('wp_ajax_nopriv_anima_ai_chat', [$this, 'handle_chat']);
+        
+        // Real AI Lab Hooks
+        add_action('wp_ajax_anima_oracle_consult_real', [$this, 'handle_oracle_consult']);
+        add_action('wp_ajax_nopriv_anima_oracle_consult_real', [$this, 'handle_oracle_consult']);
+        add_action('wp_ajax_anima_generate_avatar_real', [$this, 'handle_avatar_generation']);
+        
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
     }
+
+    // ... (existing methods) ...
+
+    public function handle_oracle_consult()
+    {
+        // No nonce check for public oracle to allow easy access, or add if strict security needed
+        // For this demo, we'll keep it open or use a generic nonce if available
+        
+        $message = sanitize_text_field($_POST['message']);
+        if(empty($message)) wp_send_json_error('Silence is not a query.');
+
+        $api_key = defined('ANIMA_OPENAI_KEY') ? ANIMA_OPENAI_KEY : '';
+        if (empty($api_key)) wp_send_json_error('Neural Link Offline (API Key Missing).');
+
+        $system_prompt = "You are the Cyber-Oracle, an ancient digital entity residing in the Anima Metaverse. 
+        Speak in riddles, use cyberpunk/tech-noir metaphors (glitches, neon, code, data streams). 
+        Keep responses concise (under 50 words). Be mysterious but helpful.";
+
+        $response = wp_remote_post('https://api.openai.com/v1/chat/completions', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $api_key
+            ],
+            'body' => json_encode([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [
+                    ['role' => 'system', 'content' => $system_prompt],
+                    ['role' => 'user', 'content' => $message]
+                ],
+                'temperature' => 0.8,
+                'max_tokens' => 100
+            ]),
+            'timeout' => 30
+        ]);
+
+        if (is_wp_error($response)) wp_send_json_error('Connection Interrupted.');
+
+        $body = json_decode(wp_remote_retrieve_body($response), true);
+        $reply = $body['choices'][0]['message']['content'] ?? 'The static overwhelms the signal...';
+
+        wp_send_json_success(['reply' => $reply]);
+    }
+
+    public function handle_avatar_generation()
+    {
+        if (!is_user_logged_in()) wp_send_json_error('Access Denied. Login Required.');
+        
+        $archetype = sanitize_text_field($_POST['archetype']);
+        $style = sanitize_text_field($_POST['style']);
+        
+        $api_key = defined('ANIMA_OPENAI_KEY') ? ANIMA_OPENAI_KEY : '';
+        if (empty($api_key)) wp_send_json_error('Neural Link Offline.');
+
+        // Construct Prompt
+        $prompt = "A high-quality digital portrait of a {$archetype} character in a {$style} cyberpunk aesthetic. 
+        Futuristic, neon lighting, detailed, 8k resolution, trending on artstation.";
+
+        $response = wp_remote_post('https://api.openai.com/v1/images/generations', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $api_key
+            ],
+            'body' => json_encode([
+                'prompt' => $prompt,
+                'n' => 1,
+                'size' => '512x512'
+            ]),
+            'timeout' => 60
+        ]);
+
+        if (is_wp_error($response)) wp_send_json_error('Synthesis Failed.');
+
+        $body = json_decode(wp_remote_retrieve_body($response), true);
+        
+        if (isset($body['error'])) {
+            wp_send_json_error('Error: ' . $body['error']['message']);
+        }
+
+        $image_url = $body['data'][0]['url'] ?? '';
+
+        if(empty($image_url)) wp_send_json_error('Data Corruption. No image formed.');
+
+        wp_send_json_success(['url' => $image_url]);
+    }
+}
 
     public function enqueue_scripts()
     {

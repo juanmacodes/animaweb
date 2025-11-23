@@ -1,0 +1,144 @@
+/* Matrix Chat Styles */
+#matrix-chat-core {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 320px;
+    background: #000;
+    border: 1px solid #00FF94;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    z-index: 9999;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 15px rgba(0, 255, 148, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.matrix-chat-collapsed .matrix-chat-body {
+    display: none;
+}
+
+.matrix-chat-header {
+    background: #0a0a0a;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    border-radius: 8px 8px 0 0;
+}
+
+.matrix-chat-header:hover {
+    background: #111;
+}
+
+.status-led {
+    width: 8px;
+    height: 8px;
+    background: #00FF94;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #00FF94;
+    animation: pulse 2s infinite;
+}
+
+.header-title {
+    color: #00FF94;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.toggle-icon {
+    color: #00FF94;
+    font-weight: bold;
+}
+
+.matrix-chat-body {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.matrix-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 0.85rem;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #000;
+}
+
+.matrix-messages::-webkit-scrollbar {
+    width: 6px;
+}
+.matrix-messages::-webkit-scrollbar-thumb {
+    background: #333;
+}
+
+.chat-msg {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.chat-msg .user {
+    color: #00FF94;
+    font-weight: bold;
+}
+
+.chat-msg .text {
+    color: #ccc;
+}
+
+.chat-msg.system {
+    color: #555;
+    font-style: italic;
+}
+
+.chat-msg.self .user {
+    color: #00F0FF; /* Cyan for self */
+}
+
+.matrix-input-area {
+    padding: 10px;
+    border-top: 1px solid #333;
+    display: flex;
+    gap: 5px;
+}
+
+#matrix-input {
+    flex-grow: 1;
+    background: #111;
+    border: 1px solid #333;
+    color: #00FF94;
+    padding: 5px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+#matrix-input:focus {
+    border-color: #00FF94;
+}
+
+#matrix-send {
+    background: #00FF94;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 10px;
+    font-family: 'Courier New', monospace;
+}
+
+#matrix-send:hover {
+    background: #00cc76;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
