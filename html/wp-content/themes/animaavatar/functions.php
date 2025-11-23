@@ -680,206 +680,9 @@ function anima_render_mobile_dock()
 		<a href="<?php echo home_url('/menu/'); ?>" class="dock-item">
 			<span class="dashicons dashicons-menu"></span>
 			<span>Menú</span>
-			$course_id = $course_query->posts[0];
-
-			$courses[] = [
-			'course_id' => $course_id,
-			'title' => get_the_title($course_id),
-			'url' => get_permalink($course_id),
-			'thumb' => get_the_post_thumbnail_url($course_id, 'medium') ?: wc_placeholder_img_src(),
-			];
-			}
-			}
-			}
-			return $courses;
-			}
-			}
-			```php
-
-			// 7.2. HELPER: Obtener pedidos recientes (Necesario para 'Pedidos Recientes')
-			if (!function_exists('anima_get_recent_orders') && class_exists('WooCommerce')) {
-			function anima_get_recent_orders($user_id, $count = 3)
-			{
-			$customer_orders = wc_get_orders([
-			'limit' => $count,
-			'customer_id' => $user_id,
-			'orderby' => 'date',
-			'order' => 'DESC',
-			'status' => ['completed', 'processing'],
-			]);
-
-			$orders_data = [];
-			if (!empty($customer_orders)) {
-			foreach ($customer_orders as $order) {
-			$orders_data[] = [
-			'id' => $order->get_id(),
-			'date' => wc_format_datetime($order->get_date_created()),
-			'status' => wc_get_order_status_name($order->get_status()),
-			'status_slug' => $order->get_status(),
-			'total' => $order->get_formatted_order_total(),
-			'view_url' => $order->get_view_order_url(),
-			];
-			}
-			}
-			return $orders_data;
-			}
-			}
-
-			// 7.3. PROCESADOR: Maneja la subida de la foto de perfil (FIX DE LA FOTO)
-			function anima_handle_profile_picture_upload()
-			{
-			// 1. Comprobaciones de seguridad y login
-			if (!is_user_logged_in()) {
-			wp_die('Usuario no logueado.');
-			}
-
-			// Verificar el "nonce" de seguridad del formulario en page-perfil.php
-			if (!isset($_POST['profile_picture_nonce']) || !wp_verify_nonce($_POST['profile_picture_nonce'],
-			'upload_profile_picture_action')) {
-			wp_die('Error de seguridad (Nonce).');
-			}
-
-			// Verificar que se ha enviado un archivo
-			if (empty($_FILES['profile_picture']['name'])) {
-			wp_redirect(wp_get_referer()); // Simplemente recargar si no hay archivo
-			exit;
-			}
-
-			// 2. Preparar el entorno de WordPress para manejar subidas
-			require_once(ABSPATH . 'wp-admin/includes/image.php');
-			require_once(ABSPATH . 'wp-admin/includes/file.php');
-			require_once(ABSPATH . 'wp-admin/includes/media.php');
-
-			// 3. Manejar la subida del archivo e insertarlo en la biblioteca de medios
-			$upload_overrides = array('test_form' => false);
-			$movefile = wp_handle_upload($_FILES['profile_picture'], $upload_overrides);
-
-			if ($movefile && !isset($movefile['error'])) {
-			// Inserción en la Biblioteca
-			$attach_id = wp_insert_attachment(
-			array(
-			'guid' => $movefile['url'],
-			'post_mime_type' => $movefile['type'],
-			'post_title' => preg_replace('/\.[^.]+$/', '', basename($movefile['file'])),
-			'post_content' => '',
-			'post_status' => 'inherit'
-			),
-			$movefile['file']
-			);
-
-			// Generar metadatos (miniaturas)
-			$attach_data = wp_generate_attachment_metadata($attach_id, $movefile['file']);
-			wp_update_attachment_metadata($attach_id, $attach_data);
-
-			// 4. Guardar el ID de la imagen en los metadatos del usuario actual
-			update_user_meta(get_current_user_id(), 'profile_picture', $attach_id);
-
-			// Redirigir con éxito
-			wp_redirect(add_query_arg('upload_status', 'success', wp_get_referer()));
-			exit;
-
-			} else {
-			// Error de subida: (Muestra el error en el log si WP_DEBUG está activo)
-			wp_redirect(add_query_arg('upload_status', 'error_upload', wp_get_referer()));
-			exit;
-			}
-			}
-
-			// Conectar esta función a la acción del formulario
-			add_action('admin_post_upload_profile_picture', 'anima_handle_profile_picture_upload');
-
-
-			// 7.4. FILTRO: Mostrar la foto de perfil custom en lugar de Gravatar
-			add_filter('get_avatar', 'anima_get_custom_profile_picture', 10, 5);
-			if (!function_exists('anima_get_custom_profile_picture')) {
-			function anima_get_custom_profile_picture($avatar, $id_or_email, $size, $default, $alt)
-			{
-			$user_id = 0;
-
-			// Determinar el ID del usuario
-			if (is_numeric($id_or_email)) {
-			$user_id = (int) $id_or_email;
-			} elseif (is_string($id_or_email) && ($user = get_user_by('email', $id_or_email))) {
-			$user_id = $user->ID;
-			} elseif (is_object($id_or_email) && !empty($id_or_email->user_id)) {
-			$user_id = (int) $id_or_email->user_id;
-			}
-
-			if ($user_id) {
-			$custom_image_id = get_user_meta($user_id, 'profile_picture', true);
-			if ($custom_image_id) {
-			$image_url = wp_get_attachment_image_url($custom_image_id, 'thumbnail'); // Usamos el tamaño 'thumbnail'
-			if ($image_url) {
-			// Generamos el HTML del avatar personalizado
-			return '<img alt="' . esc_attr($alt) . '" src="' . esc_url($image_url) . '"
-				class="avatar avatar-' . esc_attr($size) . ' photo" height="' . esc_attr($size) . '"
-				width="' . esc_attr($size) . '" />';
-			}
-			}
-			}
-			return $avatar; // Devolver Gravatar si no hay imagen custom
-			}
-			}
-
-			// =====================================================================
-			// 8. FUNCIONES DE COMERCIO (WOOCOMMERCE)
-			// =====================================================================
-
-			/**
-			* Obtiene el precio formateado de un producto de WooCommerce por ID.
-			* Necesario para mostrar los precios en la vista de recarga.
-			*/
-			if (!function_exists('anima_get_product_price_html')) {
-			function anima_get_product_price_html($product_id)
-			{
-			// La función solo debe ejecutarse si WooCommerce está activo
-			if (!class_exists('WooCommerce'))
-			return '';
-
-			$product = wc_get_product($product_id);
-
-			// Devolver el precio formateado si el producto existe
-			return $product ? $product->get_price_html() : 'N/A';
-			}
-			}
-
-			/* ===========================================================
-			9. MOBILE APP DOCK (BOTTOM NAV)
-			=========================================================== */
-			add_action('wp_footer', 'anima_render_mobile_dock');
-
-			function anima_render_mobile_dock() {
-			if (!wp_is_mobile()) return;
-
-			$home_cls = is_front_page() ? 'active' : '';
-			$nexus_cls = is_page('comunidad') ? 'active' : '';
-			$profile_cls = is_page('perfil') ? 'active' : '';
-			$courses_cls = is_page('cursos') ? 'active' : '';
-			?>
-			<nav class="anima-mobile-dock">
-				<a href="<?php echo home_url('/'); ?>" class="dock-item <?php echo $home_cls; ?>">
-					<span class="dashicons dashicons-admin-home"></span>
-					<span>Inicio</span>
-				</a>
-				<a href="<?php echo home_url('/cursos/'); ?>" class="dock-item <?php echo $courses_cls; ?>">
-					<span class="dashicons dashicons-welcome-learn-more"></span>
-					<span>Cursos</span>
-				</a>
-				<a href="<?php echo home_url('/comunidad/'); ?>" class="dock-item dock-main <?php echo $nexus_cls; ?>">
-					<div class="dock-circle">
-						<span class="dashicons dashicons-groups"></span>
-					</div>
-				</a>
-				<a href="<?php echo home_url('/perfil/'); ?>" class="dock-item <?php echo $profile_cls; ?>">
-					<span class="dashicons dashicons-id"></span>
-					<span>Perfil</span>
-				</a>
-				<a href="<?php echo home_url('/menu/'); ?>" class="dock-item">
-					<span class="dashicons dashicons-menu"></span>
-					<span>Menú</span>
-				</a>
-			</nav>
-			<?php
+		</a>
+	</nav>
+	<?php
 }
 
 /* ===========================================================
@@ -924,16 +727,16 @@ function anima_custom_css_output()
 	$accent_color = get_option('anima_app_accent_color', '#00F0FF');
 	$custom_css = get_option('anima_custom_css', '');
 	?>
-			<style type="text/css">
-				:root {
-					--anima-app-accent:
-						<?php echo esc_attr($accent_color); ?>
-					;
-				}
+	<style type="text/css">
+		:root {
+			--anima-app-accent:
+				<?php echo esc_attr($accent_color); ?>
+			;
+		}
 
-				<?php echo wp_strip_all_tags($custom_css); ?>
-			</style>
-			<?php
+		<?php echo wp_strip_all_tags($custom_css); ?>
+	</style>
+	<?php
 }
 add_action('wp_head', 'anima_custom_css_output');
 
@@ -941,20 +744,20 @@ add_action('wp_head', 'anima_custom_css_output');
 function anima_pwa_integration()
 {
 	?>
-			<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/manifest.json">
-			<script>
-				if ('serviceWorker' in navigator) {
-					window.addEventListener('load', function () {
-						navigator.serviceWorker.register('<?php echo get_template_directory_uri(); ?>/sw.js')
-							.then(function (registration) {
-								console.log('ServiceWorker registration successful with scope: ', registration.scope);
-							}, function (err) {
-								console.log('ServiceWorker registration failed: ', err);
-							});
+	<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/manifest.json">
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function () {
+				navigator.serviceWorker.register('<?php echo get_template_directory_uri(); ?>/sw.js')
+					.then(function (registration) {
+						console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					}, function (err) {
+						console.log('ServiceWorker registration failed: ', err);
 					});
-				}
-			</script>
-			<?php
+			});
+		}
+	</script>
+	<?php
 }
 add_action('wp_head', 'anima_pwa_integration');
 
