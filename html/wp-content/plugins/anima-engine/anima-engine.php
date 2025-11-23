@@ -50,6 +50,7 @@ final class Anima_Engine_Core
         require_once plugin_dir_path(__FILE__) . 'inc/karma-system.php';
         require_once plugin_dir_path(__FILE__) . 'inc/ai-manager.php';
         require_once plugin_dir_path(__FILE__) . 'inc/seo-manager.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/auth-handler.php';
         require_once plugin_dir_path(__FILE__) . 'inc/gamification-duels.php';
         require_once plugin_dir_path(__FILE__) . 'inc/p2p-market.php';
         require_once plugin_dir_path(__FILE__) . 'inc/live-events.php';
@@ -746,56 +747,15 @@ if (!function_exists('anima_render_academy_orb')) {
                 text-align: right;
             }
         </style>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const orb = document.getElementById('anima-orb-trigger');
-                const chat = document.getElementById('anima-chat-window');
-                const close = document.getElementById('close-chat-btn');
-                const input = document.getElementById('chat-input');
-                const send = document.getElementById('send-msg-btn');
-                const msgs = document.getElementById('chat-messages');
-                const ajaxUrl = "<?php echo admin_url('admin-ajax.php'); ?>";
-
-                orb.onclick = () => chat.classList.toggle('active');
-                close.onclick = () => chat.classList.remove('active');
-
-                async function sendMsg() {
-                    const txt = input.value.trim();
-                    if (!txt) return;
-
-                    msgs.innerHTML += `<div class="message user"><div class="msg-content">${txt}</div></div>`;
-                    input.value = '';
-
-                    const fd = new FormData();
-                    fd.append('action', 'anima_chat_request');
-                    fd.append('message', txt);
-
-                    try {
-                        const res = await fetch(ajaxUrl, { method: 'POST', body: fd });
-                        const data = await res.json();
-                        const reply = data.success ? data.data.reply : "Error.";
-                        msgs.innerHTML += `<div class="message bot"><div class="msg-content">${reply}</div></div>`;
-                    } catch (e) { msgs.innerHTML += `<div class="message bot">Error red.</div>`; }
-                    msgs.scrollTop = msgs.scrollHeight;
-                }
-                send.onclick = sendMsg;
-                input.onkeypress = (e) => { if (e.key === 'Enter') sendMsg(); };
-            });
-
-            function animaSubscribeToPush() {
-                // 1. Verificación básica del SDK
-                if (typeof OneSignal !== 'undefined') {
-
-                    // 2. Mostrar el prompt Slidedown (menos invasivo que el nativo)
-                    OneSignal.showSlidedownPrompt().then(function () {
-                        console.log("Iniciando secuencia de suscripción.");
-                    });
-
-                    // Puedes añadir un mensaje de éxito/error aquí después de la promesa si lo deseas
-                } else {
-                    alert("El motor de notificaciones aún no está sincronizado. Intente recargar.");
-                }
-            }
+        <script>     document.addEventListener('DOMContentLoaded', function () {         const orb = document.getElementById('anima-orb-trigger');         const chat = document.getElementById('anima-chat-window');         const close = document.getElementById('close-chat-btn');         const input = document.getElementById('chat-input');         const send = document.getElementById('send-msg-btn');         const msgs = document.getElementById('chat-messages');         const ajaxUrl = "<?php echo admin_url('admin-ajax.php'); ?>";
+                 orb.onclick = () => chat.classList.toggle('active');         close.onclick = () => chat.classList.remove('active');
+                 async function sendMsg() {             const txt = input.value.trim();             if (!txt) return;
+                     msgs.innerHTML += `<div class="message user"><div class="msg-content">${txt}</div></div>`;             input.value = '';
+                     const fd = new FormData();             fd.append('action', 'anima_chat_request');             fd.append('message', txt);
+                     try {                 const res = await fetch(ajaxUrl, { method: 'POST', body: fd });                 const data = await res.json();                 const reply = data.success ? data.data.reply : "Error.";                 msgs.innerHTML += `<div class="message bot"><div class="msg-content">${reply}</div></div>`;             } catch (e) { msgs.innerHTML += `<div class="message bot">Error red.</div>`; }             msgs.scrollTop = msgs.scrollHeight;         }         send.onclick = sendMsg;         input.onkeypress = (e) => { if (e.key === 'Enter') sendMsg(); };     });
+             function animaSubscribeToPush() {         // 1. Verificación básica del SDK         if (typeof OneSignal !== 'undefined') {
+                     // 2. Mostrar el prompt Slidedown (menos invasivo que el nativo)             OneSignal.showSlidedownPrompt().then(function () {                 console.log("Iniciando secuencia de suscripción.");             });
+                     // Puedes añadir un mensaje de éxito/error aquí después de la promesa si lo deseas         } else {             alert("El motor de notificaciones aún no está sincronizado. Intente recargar.");         }     }
 
         </script>
         <?php
