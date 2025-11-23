@@ -1,0 +1,133 @@
+.anima-ai-chat-container {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Rajdhani', sans-serif;
+    max-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.anima-ai-header {
+    background: #222;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.anima-ai-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #00F0FF;
+}
+
+.anima-ai-info h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #00FF94;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.anima-ai-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 20px;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.ai-message {
+    align-self: flex-start;
+    background: #222;
+    color: #ddd;
+    border-bottom-left-radius: 2px;
+    border: 1px solid #333;
+}
+
+.user-message {
+    align-self: flex-end;
+    background: rgba(188, 19, 254, 0.2);
+    color: #fff;
+    border-bottom-right-radius: 2px;
+    border: 1px solid #BC13FE;
+}
+
+.anima-ai-input-area {
+    padding: 15px;
+    background: #222;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #333;
+}
+
+.anima-ai-input {
+    flex: 1;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.anima-ai-input:focus {
+    outline: none;
+    border-color: #00F0FF;
+}
+
+.anima-ai-send {
+    background: #00F0FF;
+    border: none;
+    color: #000;
+    width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.anima-ai-send:hover {
+    background: #fff;
+}
+
+.message.loading {
+    opacity: 0.6;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}

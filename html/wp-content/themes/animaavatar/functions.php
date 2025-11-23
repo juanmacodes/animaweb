@@ -63,24 +63,6 @@ function animaavatar_scripts()
 	// 1. Google Fonts (Rajdhani - Estilo Cyberpunk)
 	wp_enqueue_style('animaavatar-google-fonts', 'https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap', array(), null);
 
-	// 2. Estilo principal del tema (style.css en la raíz)
-	wp_enqueue_style('animaavatar-main-style', get_stylesheet_uri(), array(), $version);
-
-	// 3. Utilities CSS (Estilos globales) - SE CARGA SIEMPRE
-	wp_enqueue_style('animaavatar-utilities', $css_path . 'utilities.css', array('animaavatar-main-style'), $version);
-
-	// Cargar CSS específico para móvil 
-	wp_enqueue_style('animaavatar-mobile', get_template_directory_uri() . '/mobile-header.css', array('animaavatar-main-style'), time());
-
-	// --- APP-LIKE MOBILE CSS ---
-	if (wp_is_mobile()) {
-		wp_enqueue_style('anima-app-mobile', get_template_directory_uri() . '/assets/css/mobile-app.css', array('animaavatar-main-style'), '1.0.0');
-	}
-
-	// --- B) ESTILOS CONDICIONALES ---
-
-	// 4. Dashboard / Perfil / Login CSS
-	if (is_page(array('mi-cuenta', 'perfil', 'dashboard', 'login')) || (function_exists('is_account_page') && is_account_page())) {
 		wp_enqueue_style('animaavatar-dashboard', $css_path . 'dashboard.css', array('animaavatar-utilities'), $version);
 	}
 
@@ -718,7 +700,411 @@ function anima_render_mobile_dock()
 		<a href="<?php echo home_url('/menu/'); ?>" class="dock-item">
 			<span class="dashicons dashicons-menu"></span>
 			<span>Menú</span>
+					$course_id = $course_query->posts[0];
+
+					$courses[] = [
+						'course_id' => $course_id,
+						'title' => get_the_title($course_id),
+						'url' => get_permalink($course_id),
+						'thumb' => get_the_post_thumbnail_url($course_id, 'medium') ?: wc_placeholder_img_src(),
+					];
+				}
+			}
+		}
+		return $courses;
+	}
+}
+
+// 7.2. HELPER: Obtener pedidos recientes (Necesario para 'Pedidos Recientes')
+if (!function_exists('anima_get_recent_orders') && class_exists('WooCommerce')) {
+	function anima_get_recent_orders($user_id, $count = 3)
+	{
+		$customer_orders = wc_get_orders([
+			'limit' => $count,
+			'customer_id' => $user_id,
+			'orderby' => 'date',
+			'order' => 'DESC',
+			'status' => ['completed', 'processing'],
+		]);
+
+		$orders_data = [];
+		if (!empty($customer_orders)) {
+			foreach ($customer_orders as $order) {
+				$orders_data[] = [
+					'id' => $order->get_id(),
+					'date' => wc_format_datetime($order->get_date_created()),
+					'status' => wc_get_order_status_name($order->get_status()),
+					'status_slug' => $order->get_status(),
+					'total' => $order->get_formatted_order_total(),
+					'view_url' => $order->get_view_order_url(),
+				];
+			}
+		}
+		return $orders_data;
+	}
+}
+
+// 7.3. PROCESADOR: Maneja la subida de la foto de perfil (FIX DE LA FOTO)
+function anima_handle_profile_picture_upload()
+{
+	// 1. Comprobaciones de seguridad y login
+	if (!is_user_logged_in()) {
+		wp_die('Usuario no logueado.');
+	}
+
+	// Verificar el "nonce" de seguridad del formulario en page-perfil.php
+	if (!isset($_POST['profile_picture_nonce']) || !wp_verify_nonce($_POST['profile_picture_nonce'], 'upload_profile_picture_action')) {
+		wp_die('Error de seguridad (Nonce).');
+	}
+
+	// Verificar que se ha enviado un archivo
+	if (empty($_FILES['profile_picture']['name'])) {
+		wp_redirect(wp_get_referer()); // Simplemente recargar si no hay archivo
+		exit;
+	}
+
+	// 2. Preparar el entorno de WordPress para manejar subidas
+	require_once(ABSPATH . 'wp-admin/includes/image.php');
+	require_once(ABSPATH . 'wp-admin/includes/file.php');
+	require_once(ABSPATH . 'wp-admin/includes/media.php');
+
+	// 3. Manejar la subida del archivo e insertarlo en la biblioteca de medios
+	$upload_overrides = array('test_form' => false);
+	$movefile = wp_handle_upload($_FILES['profile_picture'], $upload_overrides);
+
+	if ($movefile && !isset($movefile['error'])) {
+		// Inserción en la Biblioteca
+		$attach_id = wp_insert_attachment(
+			array(
+				'guid' => $movefile['url'],
+				'post_mime_type' => $movefile['type'],
+				'post_title' => preg_replace('/\.[^.]+$/', '', basename($movefile['file'])),
+				'post_content' => '',
+				'post_status' => 'inherit'
+			),
+			$movefile['file']
+		);
+
+		// Generar metadatos (miniaturas)
+		$attach_data = wp_generate_attachment_metadata($attach_id, $movefile['file']);
+		wp_update_attachment_metadata($attach_id, $attach_data);
+
+		// 4. Guardar el ID de la imagen en los metadatos del usuario actual
+		update_user_meta(get_current_user_id(), 'profile_picture', $attach_id);
+
+		// Redirigir con éxito
+		wp_redirect(add_query_arg('upload_status', 'success', wp_get_referer()));
+		exit;
+
+	} else {
+		// Error de subida: (Muestra el error en el log si WP_DEBUG está activo)
+		wp_redirect(add_query_arg('upload_status', 'error_upload', wp_get_referer()));
+		exit;
+	}
+}
+
+// Conectar esta función a la acción del formulario
+add_action('admin_post_upload_profile_picture', 'anima_handle_profile_picture_upload');
+
+
+// 7.4. FILTRO: Mostrar la foto de perfil custom en lugar de Gravatar
+add_filter('get_avatar', 'anima_get_custom_profile_picture', 10, 5);
+if (!function_exists('anima_get_custom_profile_picture')) {
+	function anima_get_custom_profile_picture($avatar, $id_or_email, $size, $default, $alt)
+	{
+		$user_id = 0;
+
+		// Determinar el ID del usuario
+		if (is_numeric($id_or_email)) {
+			$user_id = (int) $id_or_email;
+		} elseif (is_string($id_or_email) && ($user = get_user_by('email', $id_or_email))) {
+			$user_id = $user->ID;
+		} elseif (is_object($id_or_email) && !empty($id_or_email->user_id)) {
+			$user_id = (int) $id_or_email->user_id;
+		}
+
+		if ($user_id) {
+			$custom_image_id = get_user_meta($user_id, 'profile_picture', true);
+			if ($custom_image_id) {
+				$image_url = wp_get_attachment_image_url($custom_image_id, 'thumbnail'); // Usamos el tamaño 'thumbnail'
+				if ($image_url) {
+					// Generamos el HTML del avatar personalizado
+					return '<img alt="' . esc_attr($alt) . '" src="' . esc_url($image_url) . '" class="avatar avatar-' . esc_attr($size) . ' photo" height="' . esc_attr($size) . '" width="' . esc_attr($size) . '" />';
+				}
+			}
+		}
+		return $avatar; // Devolver Gravatar si no hay imagen custom
+	}
+}
+
+// =====================================================================
+// 8. FUNCIONES DE COMERCIO (WOOCOMMERCE)
+// =====================================================================
+
+/**
+ * Obtiene el precio formateado de un producto de WooCommerce por ID.
+ * Necesario para mostrar los precios en la vista de recarga.
+ */
+if (!function_exists('anima_get_product_price_html')) {
+	function anima_get_product_price_html($product_id)
+	{
+		// La función solo debe ejecutarse si WooCommerce está activo
+		if (!class_exists('WooCommerce'))
+			return '';
+
+		$product = wc_get_product($product_id);
+
+		// Devolver el precio formateado si el producto existe
+		return $product ? $product->get_price_html() : 'N/A';
+	}
+}
+
+/* ===========================================================
+   9. MOBILE APP DOCK (BOTTOM NAV)
+   =========================================================== */
+add_action('wp_footer', 'anima_render_mobile_dock');
+
+function anima_render_mobile_dock()
+{
+	if (!wp_is_mobile())
+		return;
+
+	$home_cls = is_front_page() ? 'active' : '';
+	$nexus_cls = is_page('comunidad') ? 'active' : '';
+	$profile_cls = is_page('perfil') ? 'active' : '';
+	$courses_cls = is_page('cursos') ? 'active' : '';
+	?>
+	<nav class="anima-mobile-dock">
+		<a href="<?php echo home_url('/'); ?>" class="dock-item <?php echo $home_cls; ?>">
+			<span class="dashicons dashicons-admin-home"></span>
+			<span>Inicio</span>
+		</a>
+		<a href="<?php echo home_url('/cursos/'); ?>" class="dock-item <?php echo $courses_cls; ?>">
+			<span class="dashicons dashicons-welcome-learn-more"></span>
+			<span>Cursos</span>
+		</a>
+		<a href="<?php echo home_url('/comunidad/'); ?>" class="dock-item dock-main <?php echo $nexus_cls; ?>">
+			<div class="dock-circle">
+				<span class="dashicons dashicons-groups"></span>
+			</div>
+		</a>
+		<a href="<?php echo home_url('/perfil/'); ?>" class="dock-item <?php echo $profile_cls; ?>">
+			<span class="dashicons dashicons-id"></span>
+			<span>Perfil</span>
+		</a>
+		<a href="<?php echo home_url('/menu/'); ?>" class="dock-item">
+			<span class="dashicons dashicons-menu"></span>
+			<span>Menú</span>
+		</a>
+	</nav>
+	<?php
+		$customer_orders = wc_get_orders([
+			'limit' => $count,
+			'customer_id' => $user_id,
+			'orderby' => 'date',
+			'order' => 'DESC',
+			'status' => ['completed', 'processing'],
+		]);
+
+		$orders_data = [];
+		if (!empty($customer_orders)) {
+			foreach ($customer_orders as $order) {
+				$orders_data[] = [
+					'id' => $order->get_id(),
+					'date' => wc_format_datetime($order->get_date_created()),
+					'status' => wc_get_order_status_name($order->get_status()),
+					'status_slug' => $order->get_status(),
+					'total' => $order->get_formatted_order_total(),
+					'view_url' => $order->get_view_order_url(),
+				];
+			}
+		}
+		return $orders_data;
+	}
+}
+
+// 7.3. PROCESADOR: Maneja la subida de la foto de perfil (FIX DE LA FOTO)
+function anima_handle_profile_picture_upload()
+{
+	// 1. Comprobaciones de seguridad y login
+	if (!is_user_logged_in()) {
+		wp_die('Usuario no logueado.');
+	}
+
+	// Verificar el "nonce" de seguridad del formulario en page-perfil.php
+	if (!isset($_POST['profile_picture_nonce']) || !wp_verify_nonce($_POST['profile_picture_nonce'], 'upload_profile_picture_action')) {
+		wp_die('Error de seguridad (Nonce).');
+	}
+
+	// Verificar que se ha enviado un archivo
+	if (empty($_FILES['profile_picture']['name'])) {
+		wp_redirect(wp_get_referer()); // Simplemente recargar si no hay archivo
+		exit;
+	}
+
+	// 2. Preparar el entorno de WordPress para manejar subidas
+	require_once(ABSPATH . 'wp-admin/includes/image.php');
+	require_once(ABSPATH . 'wp-admin/includes/file.php');
+	require_once(ABSPATH . 'wp-admin/includes/media.php');
+
+	// 3. Manejar la subida del archivo e insertarlo en la biblioteca de medios
+	$upload_overrides = array('test_form' => false);
+	$movefile = wp_handle_upload($_FILES['profile_picture'], $upload_overrides);
+
+	if ($movefile && !isset($movefile['error'])) {
+		// Inserción en la Biblioteca
+		$attach_id = wp_insert_attachment(
+			array(
+				'guid' => $movefile['url'],
+				'post_mime_type' => $movefile['type'],
+				'post_title' => preg_replace('/\.[^.]+$/', '', basename($movefile['file'])),
+				'post_content' => '',
+				'post_status' => 'inherit'
+			),
+			$movefile['file']
+		);
+
+		// Generar metadatos (miniaturas)
+		$attach_data = wp_generate_attachment_metadata($attach_id, $movefile['file']);
+		wp_update_attachment_metadata($attach_id, $attach_data);
+
+		// 4. Guardar el ID de la imagen en los metadatos del usuario actual
+		update_user_meta(get_current_user_id(), 'profile_picture', $attach_id);
+
+		// Redirigir con éxito
+		wp_redirect(add_query_arg('upload_status', 'success', wp_get_referer()));
+		exit;
+
+	} else {
+		// Error de subida: (Muestra el error en el log si WP_DEBUG está activo)
+		wp_redirect(add_query_arg('upload_status', 'error_upload', wp_get_referer()));
+		exit;
+	}
+}
+
+// Conectar esta función a la acción del formulario
+add_action('admin_post_upload_profile_picture', 'anima_handle_profile_picture_upload');
+
+
+// 7.4. FILTRO: Mostrar la foto de perfil custom en lugar de Gravatar
+add_filter('get_avatar', 'anima_get_custom_profile_picture', 10, 5);
+if (!function_exists('anima_get_custom_profile_picture')) {
+	function anima_get_custom_profile_picture($avatar, $id_or_email, $size, $default, $alt)
+	{
+		$user_id = 0;
+
+		// Determinar el ID del usuario
+		if (is_numeric($id_or_email)) {
+			$user_id = (int) $id_or_email;
+		} elseif (is_string($id_or_email) && ($user = get_user_by('email', $id_or_email))) {
+			$user_id = $user->ID;
+		} elseif (is_object($id_or_email) && !empty($id_or_email->user_id)) {
+			$user_id = (int) $id_or_email->user_id;
+		}
+
+		if ($user_id) {
+			$custom_image_id = get_user_meta($user_id, 'profile_picture', true);
+			if ($custom_image_id) {
+				$image_url = wp_get_attachment_image_url($custom_image_id, 'thumbnail'); // Usamos el tamaño 'thumbnail'
+				if ($image_url) {
+					// Generamos el HTML del avatar personalizado
+					return '<img alt="' . esc_attr($alt) . '" src="' . esc_url($image_url) . '" class="avatar avatar-' . esc_attr($size) . ' photo" height="' . esc_attr($size) . '" width="' . esc_attr($size) . '" />';
+				}
+			}
+		}
+		return $avatar; // Devolver Gravatar si no hay imagen custom
+	}
+}
+
+// =====================================================================
+// 8. FUNCIONES DE COMERCIO (WOOCOMMERCE)
+// =====================================================================
+
+/**
+ * Obtiene el precio formateado de un producto de WooCommerce por ID.
+ * Necesario para mostrar los precios en la vista de recarga.
+ */
+if (!function_exists('anima_get_product_price_html')) {
+	function anima_get_product_price_html($product_id)
+	{
+		// La función solo debe ejecutarse si WooCommerce está activo
+		if (!class_exists('WooCommerce'))
+			return '';
+
+		$product = wc_get_product($product_id);
+
+		// Devolver el precio formateado si el producto existe
+		return $product ? $product->get_price_html() : 'N/A';
+	}
+}
+
+/* ===========================================================
+   9. MOBILE APP DOCK (BOTTOM NAV)
+   =========================================================== */
+add_action('wp_footer', 'anima_render_mobile_dock');
+
+function anima_render_mobile_dock()
+{
+	if (!wp_is_mobile())
+		return;
+
+	$home_cls = is_front_page() ? 'active' : '';
+	$nexus_cls = is_page('comunidad') ? 'active' : '';
+	$profile_cls = is_page('perfil') ? 'active' : '';
+	$courses_cls = is_page('cursos') ? 'active' : '';
+	?>
+	<nav class="anima-mobile-dock">
+		<a href="<?php echo home_url('/'); ?>" class="dock-item <?php echo $home_cls; ?>">
+			<span class="dashicons dashicons-admin-home"></span>
+			<span>Inicio</span>
+		</a>
+		<a href="<?php echo home_url('/cursos/'); ?>" class="dock-item <?php echo $courses_cls; ?>">
+			<span class="dashicons dashicons-welcome-learn-more"></span>
+			<span>Cursos</span>
+		</a>
+		<a href="<?php echo home_url('/comunidad/'); ?>" class="dock-item dock-main <?php echo $nexus_cls; ?>">
+			<div class="dock-circle">
+				<span class="dashicons dashicons-groups"></span>
+			</div>
+		</a>
+		<a href="<?php echo home_url('/perfil/'); ?>" class="dock-item <?php echo $profile_cls; ?>">
+			<span class="dashicons dashicons-id"></span>
+			<span>Perfil</span>
+		</a>
+		<a href="<?php echo home_url('/menu/'); ?>" class="dock-item">
+			<span class="dashicons dashicons-menu"></span>
+			<span>Menú</span>
 		</a>
 	</nav>
 	<?php
 }
+
+/* ===========================================================
+   10. PUBLIC PROFILE REWRITE RULES & TEMPLATE LOADER
+   =========================================================== */
+function anima_profile_rewrite_rule() {
+    add_rewrite_rule('^profile/([^/]*)/?', 'index.php?anima_profile_user=$matches[1]', 'top');
+}
+add_action('init', 'anima_profile_rewrite_rule');
+
+function anima_profile_query_vars($vars) {
+    $vars[] = 'anima_profile_user';
+    return $vars;
+}
+add_filter('query_vars', 'anima_profile_query_vars');
+
+function anima_profile_template_include($template) {
+    if (get_query_var('anima_profile_user')) {
+        $new_template = locate_template(array('page-public-profile.php'));
+        if ('' != $new_template) {
+            return $new_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'anima_profile_template_include');
+
+function anima_custom_author_link($link, $author_id, $author_nicename) {
+    return home_url('/profile/' . $author_nicename);
+}
+add_filter('author_link', 'anima_custom_author_link', 10, 3);

@@ -66,6 +66,10 @@ final class Anima_Engine_Core
         $pro_panel = ANIMA_ENGINE_PATH . 'inc/admin-pro-panel.php';
         if (file_exists($pro_panel))
             require_once($pro_panel);
+
+        $ai_manager = ANIMA_ENGINE_PATH . 'inc/ai-manager.php';
+        if (file_exists($ai_manager))
+            require_once($ai_manager);
     }
 
     public function register_widgets($widgets_manager)
@@ -1204,8 +1208,7 @@ if (!function_exists('anima_handle_load_comments')) {
                     <div class="comment-body">
                         <strong class="comment-author"><?php echo get_comment_author($comment->comment_ID); ?></strong>
                         <div class="comment-text"><?php echo wpautop($comment->comment_content); ?></div>
-                        <span
-                            class="comment-date"><?php echo human_time_diff(strtotime($comment->comment_date)) . ' atrás'; ?></span>
+                        <span class="comment-date"><?php echo human_time_diff(strtotime($comment->comment_date)) . ' atrás'; ?></span>
                     </div>
                 </div>
                 <?php

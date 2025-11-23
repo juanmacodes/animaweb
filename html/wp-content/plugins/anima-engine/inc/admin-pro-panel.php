@@ -101,6 +101,7 @@ class Anima_Pro_Panel
             <h2 class="nav-tab-wrapper">
                 <a href="#overview" class="nav-tab nav-tab-active">Visión General</a>
                 <a href="#users" class="nav-tab">Usuarios y Créditos</a>
+                <a href="#ai-assistants" class="nav-tab">Asistentes IA</a>
                 <a href="#design" class="nav-tab">Diseño y Funciones</a>
             </h2>
 
@@ -150,6 +151,75 @@ class Anima_Pro_Panel
                 </div>
             </div>
 
+            <div id="ai-assistants" class="anima-tab-content">
+                <div class="anima-card">
+                    <h3>Crear Nuevo Asistente</h3>
+                    <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
+                        <input type="hidden" name="action" value="anima_save_ai_assistant">
+                        <?php wp_nonce_field('anima_ai_assistant_verify'); ?>
+
+                        <p>
+                            <label>Nombre del Asistente:</label><br>
+                            <input type="text" name="ai_name" class="regular-text" placeholder="Ej: Yoda Tutor" required>
+                        </p>
+                        <p>
+                            <label>ID Único (Slug):</label><br>
+                            <input type="text" name="ai_slug" class="regular-text" placeholder="Ej: yoda_tutor" required>
+                        <p class="description">Usa este ID en el shortcode: <code>[anima_ai id="yoda_tutor"]</code></p>
+                        </p>
+                        <p>
+                            <label>System Prompt (Personalidad):</label><br>
+                            <textarea name="ai_prompt" rows="5" class="large-text" placeholder="Eres un maestro sabio..."
+                                required></textarea>
+                        </p>
+                        <p>
+                            <label>URL del Avatar (Imagen):</label><br>
+                            <input type="url" name="ai_avatar" class="regular-text" placeholder="https://...">
+                        </p>
+                        <button type="submit" class="button button-primary">Guardar Asistente</button>
+                    </form>
+                </div>
+
+                <div class="anima-card">
+                    <h3>Asistentes Existentes</h3>
+                    <?php
+                    $assistants = get_option('anima_ai_assistants', []);
+                    if (!empty($assistants)): ?>
+                        <table class="wp-list-table widefat fixed striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>ID (Slug)</th>
+                                    <th>Shortcode</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($assistants as $slug => $data): ?>
+                                    <tr>
+                                        <td><?php echo esc_html($data['name']); ?></td>
+                                        <td><?php echo esc_html($slug); ?></td>
+                                        <td><code>[anima_ai id="<?php echo esc_attr($slug); ?>"]</code></td>
+                                        <td>
+                                            <form method="post" action="<?php echo admin_url('admin-post.php'); ?>"
+                                                style="display:inline;">
+                                                <input type="hidden" name="action" value="anima_delete_ai_assistant">
+                                                <input type="hidden" name="ai_slug" value="<?php echo esc_attr($slug); ?>">
+                                                <?php wp_nonce_field('anima_delete_ai_verify'); ?>
+                                                <button type="submit" class="button button-link-delete"
+                                                    onclick="return confirm('¿Borrar?');">Borrar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <p>No hay asistentes creados aún.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
             <div id="design" class="anima-tab-content">
                 <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
                     <input type="hidden" name="action" value="anima_save_pro_settings">
@@ -180,9 +250,48 @@ class Anima_Pro_Panel
                     <button type="submit" class="button button-primary button-large">Guardar Cambios</button>
                 </form>
             </div>
+            <?php
+    }
 
-        </div>
-        <?php
+    public function save_ai_assistant()
+    {
+        if (!current_user_can('manage_options'))
+            wp_die('No autorizado');
+        check_admin_referer('anima_ai_assistant_verify');
+
+        $name = sanitize_text_field($_POST['ai_name']);
+        $slug = sanitize_title($_POST['ai_slug']);
+        $prompt = sanitize_textarea_field($_POST['ai_prompt']);
+        $avatar = esc_url_raw($_POST['ai_avatar']);
+
+        $assistants = get_option('anima_ai_assistants', []);
+        $assistants[$slug] = [
+            'name' => $name,
+            'prompt' => $prompt,
+            'avatar' => $avatar
+        ];
+
+        update_option('anima_ai_assistants', $assistants);
+        wp_redirect(admin_url('admin.php?page=anima-pro-panel&tab=ai-assistants&status=created'));
+        exit;
+    }
+
+    public function delete_ai_assistant()
+    {
+        if (!current_user_can('manage_options'))
+            wp_die('No autorizado');
+        check_admin_referer('anima_delete_ai_verify');
+
+        $slug = sanitize_title($_POST['ai_slug']);
+        $assistants = get_option('anima_ai_assistants', []);
+
+        if (isset($assistants[$slug])) {
+            unset($assistants[$slug]);
+            update_option('anima_ai_assistants', $assistants);
+        }
+
+        wp_redirect(admin_url('admin.php?page=anima-pro-panel&tab=ai-assistants&status=deleted'));
+        exit;
     }
 
     public function save_settings()
