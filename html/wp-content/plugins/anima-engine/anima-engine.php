@@ -70,6 +70,10 @@ final class Anima_Engine_Core
         $ai_manager = ANIMA_ENGINE_PATH . 'inc/ai-manager.php';
         if (file_exists($ai_manager))
             require_once($ai_manager);
+
+        $gamification = ANIMA_ENGINE_PATH . 'inc/gamification-duels.php';
+        if (file_exists($gamification))
+            require_once($gamification);
     }
 
     public function register_widgets($widgets_manager)

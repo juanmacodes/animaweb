@@ -22,15 +22,13 @@ $img_ai     = "https://picsum.photos/seed/ailab3/800/600";
     <main id="main" class="site-main">
 
         <section id="hero-core" class="hero-fullscreen">
-            <div class="video-bg-wrapper">
-                <video autoplay muted loop playsinline class="video-bg">
-                    <source src="<?php echo esc_url($hero_video); ?>" type="video/mp4">
-                </video>
-                <div class="overlay-scanline"></div>
-                <div class="overlay-vignette"></div>
-                <div class="overlay-particles">
-                    <div class="p-light p1"></div><div class="p-light p2"></div><div class="p-light p3"></div>
-                </div>
+            <!-- 3D Avatar Tester Container -->
+            <div id="hero-canvas-container" class="hero-canvas" style="position: absolute; inset: 0; z-index: 1;"></div>
+            
+            <!-- Fallback/Overlay for atmosphere -->
+            <div class="overlay-vignette"></div>
+            <div class="overlay-particles">
+                <div class="p-light p1"></div><div class="p-light p2"></div><div class="p-light p3"></div>
             </div>
 
             <div class="hero-content-layer text-center">
@@ -39,6 +37,12 @@ $img_ai     = "https://picsum.photos/seed/ailab3/800/600";
                 </div>
                 <h1 class="hero-main-title cyber-glitch" data-text="BIENVENIDO AL NÚCLEO">BIENVENIDO AL NÚCLEO</h1>
                 <p class="hero-subtitle">Tu realidad termina aquí. La simulación comienza.</p>
+                
+                <!-- 3D Controls Hint -->
+                <div class="avatar-controls-hint" style="margin-top: 20px; font-size: 0.8rem; color: var(--neon-cyan); opacity: 0.8;">
+                    <span class="dashicons dashicons-move"></span> ARRASTRA PARA ROTAR EL AVATAR
+                </div>
+
                 <div class="hero-divider"></div>
             </div>
             
