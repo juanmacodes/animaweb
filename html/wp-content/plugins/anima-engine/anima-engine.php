@@ -49,6 +49,7 @@ final class Anima_Engine_Core
         require_once plugin_dir_path(__FILE__) . 'inc/admin-pro-panel.php';
         require_once plugin_dir_path(__FILE__) . 'inc/karma-system.php';
         require_once plugin_dir_path(__FILE__) . 'inc/ai-manager.php';
+        require_once plugin_dir_path(__FILE__) . 'inc/seo-manager.php';
         require_once plugin_dir_path(__FILE__) . 'inc/gamification-duels.php';
         require_once plugin_dir_path(__FILE__) . 'inc/p2p-market.php';
         require_once plugin_dir_path(__FILE__) . 'inc/live-events.php';
