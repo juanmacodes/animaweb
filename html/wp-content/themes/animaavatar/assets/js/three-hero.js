@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let mixer;
 
     // Placeholder URL - Replace with actual .glb file
-    const modelUrl = 'https://models.readyplayer.me/64d61e9e16b7f32491f6d354.glb';
+    // Dynamic URL from WordPress Options
+    const modelUrl = (typeof animaSettings !== 'undefined' && animaSettings.modelUrl)
+        ? animaSettings.modelUrl
+        : 'https://models.readyplayer.me/64d61e9e16b7f32491f6d354.glb';
 
     loader.load(modelUrl, function (gltf) {
         avatar = gltf.scene;

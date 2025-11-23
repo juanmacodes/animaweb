@@ -102,7 +102,8 @@ class Anima_Pro_Panel
                 <a href="#overview" class="nav-tab nav-tab-active">Visión General</a>
                 <a href="#users" class="nav-tab">Usuarios y Créditos</a>
                 <a href="#ai-assistants" class="nav-tab">Asistentes IA</a>
-                <a href="#design" class="nav-tab">Diseño y Funciones</a>
+                <a href="#minigames" class="nav-tab">Minijuegos</a>
+                <a href="#mobile" class="nav-tab">Móvil y Visuales</a>
             </h2>
 
             <div id="overview" class="anima-tab-content active">
@@ -220,13 +221,75 @@ class Anima_Pro_Panel
                 </div>
             </div>
 
-            <div id="design" class="anima-tab-content">
+            <div id="minigames" class="anima-tab-content">
                 <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
                     <input type="hidden" name="action" value="anima_save_pro_settings">
+                    <input type="hidden" name="settings_group" value="minigames">
                     <?php wp_nonce_field('anima_pro_settings_verify'); ?>
 
                     <div class="anima-card">
-                        <h3>Configuración Visual</h3>
+                        <h3>Whack-a-Hater</h3>
+                        <p>
+                            <label>Tiempo de Juego (segundos):</label><br>
+                            <input type="number" name="whack_time"
+                                value="<?php echo esc_attr(get_option('anima_whack_time', 30)); ?>" class="small-text">
+                        </p>
+                    </div>
+
+                    <div class="anima-card">
+                        <h3>Stream Runner</h3>
+                        <p>
+                            <label>Velocidad Inicial:</label><br>
+                            <input type="number" name="runner_speed"
+                                value="<?php echo esc_attr(get_option('anima_runner_speed', 5)); ?>" step="0.1"
+                                class="small-text">
+                        </p>
+                    </div>
+
+                    <div class="anima-card">
+                        <h3>Emoji Rain</h3>
+                        <p>
+                            <label>Velocidad de Caída:</label><br>
+                            <input type="number" name="rain_speed"
+                                value="<?php echo esc_attr(get_option('anima_rain_speed', 3)); ?>" step="0.1"
+                                class="small-text">
+                        </p>
+                    </div>
+
+                    <button type="submit" class="button button-primary button-large">Guardar Configuración de Juegos</button>
+                </form>
+            </div>
+
+            <div id="mobile" class="anima-tab-content">
+                <form method="post" action="<?php echo admin_url('admin-post.php'); ?>">
+                    <input type="hidden" name="action" value="anima_save_pro_settings">
+                    <input type="hidden" name="settings_group" value="mobile">
+                    <?php wp_nonce_field('anima_pro_settings_verify'); ?>
+
+                    <div class="anima-card">
+                        <h3>Home V2 (3D Hero)</h3>
+                        <p>
+                            <label>Título del Hero:</label><br>
+                            <input type="text" name="home_title"
+                                value="<?php echo esc_attr(get_option('anima_home_title', 'ANIMA V2.0')); ?>"
+                                class="regular-text">
+                        </p>
+                        <p>
+                            <label>Subtítulo:</label><br>
+                            <input type="text" name="home_subtitle"
+                                value="<?php echo esc_attr(get_option('anima_home_subtitle', 'REALITY IS OBSOLETE')); ?>"
+                                class="regular-text">
+                        </p>
+                        <p>
+                            <label>URL del Modelo 3D (.glb):</label><br>
+                            <input type="url" name="home_model_url"
+                                value="<?php echo esc_attr(get_option('anima_home_model_url', 'https://models.readyplayer.me/64d61e9e17d0505b63025255.glb')); ?>"
+                                class="large-text">
+                        </p>
+                    </div>
+
+                    <div class="anima-card">
+                        <h3>Configuración Visual Global</h3>
                         <p>
                             <label>
                                 <input type="checkbox" name="enable_orb" value="1" <?php checked(get_option('anima_enable_orb', 1), 1); ?>>
@@ -239,6 +302,11 @@ class Anima_Pro_Panel
                                 Forzar Modo Cyberpunk (Dark)
                             </label>
                         </p>
+                        <p>
+                            <label>Color de Acento (App):</label><br>
+                            <input type="color" name="app_accent_color"
+                                value="<?php echo esc_attr(get_option('anima_app_accent_color', '#00F0FF')); ?>">
+                        </p>
                     </div>
 
                     <div class="anima-card">
@@ -247,7 +315,7 @@ class Anima_Pro_Panel
                             style="width:100%; background:#111; color:#00FF94; font-family:monospace;"><?php echo esc_textarea(get_option('anima_custom_css')); ?></textarea>
                     </div>
 
-                    <button type="submit" class="button button-primary button-large">Guardar Cambios</button>
+                    <button type="submit" class="button button-primary button-large">Guardar Visuales</button>
                 </form>
             </div>
             <?php
@@ -300,11 +368,28 @@ class Anima_Pro_Panel
             wp_die('No autorizado');
         check_admin_referer('anima_pro_settings_verify');
 
-        update_option('anima_enable_orb', isset($_POST['enable_orb']) ? 1 : 0);
-        update_option('anima_cyberpunk_mode', isset($_POST['cyberpunk_mode']) ? 1 : 0);
-        update_option('anima_custom_css', sanitize_textarea_field($_POST['custom_css']));
+        $group = isset($_POST['settings_group']) ? $_POST['settings_group'] : 'mobile';
 
-        wp_redirect(admin_url('admin.php?page=anima-pro-panel&tab=design&status=saved'));
+        if ($group === 'minigames') {
+            update_option('anima_whack_time', intval($_POST['whack_time']));
+            update_option('anima_runner_speed', floatval($_POST['runner_speed']));
+            update_option('anima_rain_speed', floatval($_POST['rain_speed']));
+            $redirect_tab = 'minigames';
+        } else {
+            // Mobile & Visuals
+            update_option('anima_enable_orb', isset($_POST['enable_orb']) ? 1 : 0);
+            update_option('anima_cyberpunk_mode', isset($_POST['cyberpunk_mode']) ? 1 : 0);
+            update_option('anima_custom_css', sanitize_textarea_field($_POST['custom_css']));
+
+            update_option('anima_home_title', sanitize_text_field($_POST['home_title']));
+            update_option('anima_home_subtitle', sanitize_text_field($_POST['home_subtitle']));
+            update_option('anima_home_model_url', esc_url_raw($_POST['home_model_url']));
+            update_option('anima_app_accent_color', sanitize_hex_color($_POST['app_accent_color']));
+
+            $redirect_tab = 'mobile';
+        }
+
+        wp_redirect(admin_url('admin.php?page=anima-pro-panel&tab=' . $redirect_tab . '&status=saved'));
         exit;
     }
 

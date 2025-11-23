@@ -46,7 +46,7 @@ function animaavatar_setup()
 		)
 	);
 }
-// =====================================================================
+add_action('after_setup_theme', 'animaavatar_setup');
 
 function animaavatar_widgets_init()
 {
@@ -64,6 +64,46 @@ function animaavatar_widgets_init()
 }
 add_action('widgets_init', 'animaavatar_widgets_init');
 
+// =====================================================================
+// 2. SCRIPTS Y ESTILOS
+// =====================================================================
+
+function animaavatar_scripts()
+{
+	wp_enqueue_style('animaavatar-style', get_stylesheet_uri());
+
+	// Enqueue the Hero Script as a module
+	wp_enqueue_script('anima-three-hero', get_template_directory_uri() . '/assets/js/three-hero.js', array(), '1.0.0', true);
+
+	// Localize script for dynamic settings
+	wp_localize_script('anima-three-hero', 'animaSettings', array(
+		'modelUrl' => get_option('anima_home_model_url', 'https://models.readyplayer.me/64d61e9e17d0505b63025255.glb')
+	));
+}
+add_action('wp_enqueue_scripts', 'animaavatar_scripts');
+
+// Add type="module" to specific scripts
+function anima_add_type_attribute($tag, $handle, $src)
+{
+	if ('anima-three-hero' === $handle) {
+		$tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+	}
+	return $tag;
+}
+add_filter('script_loader_tag', 'anima_add_type_attribute', 10, 3);
+
+function anima_add_importmap()
+{
+	echo '<script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>';
+}
+add_action('wp_head', 'anima_add_importmap');
 
 // =====================================================================
 // 4. FUNCIONES PARA NEXUS (CUSTOM POST TYPE Y METABOXES)
@@ -110,7 +150,6 @@ if (!function_exists('anima_nexus_register_feed_post_type')) {
 		register_post_type('nexus_post', $args);
 	}
 }
-
 
 // Añadir Meta Boxes para el tipo de mensaje y datos de evento
 add_action('add_meta_boxes', 'anima_nexus_add_meta_boxes_cpt');
@@ -425,12 +464,14 @@ if (!function_exists('anima_get_user_courses')) {
 
 		foreach ($orders as $order) {
 			foreach ($order->get_items() as $item) {
+				if (!is_a($item, 'WC_Order_Item_Product')) {
+					continue;
+				}
 				$product_id = $item->get_product_id(); // ID de lo que compró (puede ser variación)
 				$product = $item->get_product();
 
 				// Recopilar IDs a buscar: El producto comprado Y su padre (si es variación)
 				$ids_to_check = [$product_id];
-
 				if ($product && $product->get_parent_id()) {
 					$ids_to_check[] = $product->get_parent_id();
 				}
@@ -1036,3 +1077,24 @@ function anima_custom_author_link($link, $author_id, $author_nicename)
 	return home_url('/profile/' . $author_nicename);
 }
 add_filter('author_link', 'anima_custom_author_link', 10, 3);
+
+// =====================================================================
+// 11. CUSTOM CSS & DYNAMIC STYLES
+// =====================================================================
+function anima_custom_css_output()
+{
+	$accent_color = get_option('anima_app_accent_color', '#00F0FF');
+	$custom_css = get_option('anima_custom_css', '');
+	?>
+					<style type="text/css">
+						:root {
+							--anima-app-accent:
+								<?php echo esc_attr($accent_color); ?>
+							;
+						}
+
+						<?php echo wp_strip_all_tags($custom_css); ?>
+					</style>
+					<?php
+}
+add_action('wp_head', 'anima_custom_css_output');

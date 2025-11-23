@@ -264,6 +264,9 @@ if (!function_exists('anima_assign_credits_on_purchase')) {
 
         $credits_to_add = 0;
         foreach ($order->get_items() as $item) {
+            if (!is_a($item, 'WC_Order_Item_Product')) {
+                continue;
+            }
             $product_id = $item->get_product_id();
             if (isset($credit_packages_config[$product_id])) {
                 $credits_to_add += $credit_packages_config[$product_id]['credits'] * $item->get_quantity();
