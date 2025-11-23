@@ -19,21 +19,6 @@ if (is_user_logged_in()) {
 } else {
     $cta_url = $login_url;
     $cta_text = 'Accede al metaverso';
-}
-?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-
-<head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php wp_head(); ?>
-    <?php if (is_user_logged_in()): ?>
-        <script>
-            window.OneSignal = window.OneSignal || [];
-            OneSignal.push(function () {
-                OneSignal.setExternalUserId("<?php echo get_current_user_id(); ?>");
-            });
         </script>
     <?php endif; ?>
 </head>
