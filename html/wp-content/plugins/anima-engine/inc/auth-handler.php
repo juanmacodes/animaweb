@@ -46,6 +46,11 @@ class Anima_Auth_Handler
                 wp_set_current_user($user_id);
                 wp_set_auth_cookie($user_id);
 
+                // Award Welcome Bonus (50 Credits)
+                if (class_exists('Anima_Karma_System')) {
+                    Anima_Karma_System::get_instance()->add_karma($user_id, 50, 'Welcome Bonus');
+                }
+
                 // Redirect to Dashboard
                 wp_redirect(home_url('/perfil/'));
                 exit;
