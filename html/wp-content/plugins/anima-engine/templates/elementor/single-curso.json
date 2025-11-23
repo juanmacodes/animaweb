@@ -1,0 +1,101 @@
+{
+  "version": "0.4",
+  "title": "Single Curso Anima",
+  "type": "wp-single",
+  "subtype": "curso",
+  "author": "Anima Engine",
+  "content": [
+    {
+      "id": "section-hero",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": "boxed",
+        "padding": {"top": "60", "bottom": "40", "unit": "px"},
+        "background_background": "classic",
+        "background_color": "#080b12"
+      },
+      "elements": [
+        {
+          "id": "hero-widget",
+          "elType": "widget",
+          "widgetType": "anima-course-hero",
+          "settings": {
+            "show_price": "yes",
+            "show_hours": "yes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "section-main",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": "boxed",
+        "padding": {"top": "40", "bottom": "60", "unit": "px"},
+        "background_background": "classic",
+        "background_color": "#05070d"
+      },
+      "elements": [
+        {
+          "id": "column-content",
+          "elType": "column",
+          "settings": {"_column_size": 66},
+          "elements": [
+            {
+              "id": "post-content",
+              "elType": "widget",
+              "widgetType": "theme-post-content",
+              "settings": {
+                "align": "left"
+              }
+            },
+            {
+              "id": "syllabus",
+              "elType": "widget",
+              "widgetType": "anima-course-syllabus",
+              "settings": {
+                "show_numbers": "yes"
+              }
+            },
+            {
+              "id": "instructors",
+              "elType": "widget",
+              "widgetType": "anima-course-instructors",
+              "settings": {
+                "columns": 3,
+                "show_photo": "yes"
+              }
+            }
+          ]
+        },
+        {
+          "id": "column-sidebar",
+          "elType": "column",
+          "settings": {"_column_size": 34},
+          "elements": [
+            {
+              "id": "meta",
+              "elType": "widget",
+              "widgetType": "anima-course-meta",
+              "settings": {
+                "button_text": "Inscribirme",
+                "button_anchor": "#anima-course-enroll"
+              }
+            },
+            {
+              "id": "enroll",
+              "elType": "widget",
+              "widgetType": "anima-course-enroll",
+              "settings": {
+                "title": "Reserva tu plaza",
+                "description": "Completa el formulario para unirte a la próxima edición."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

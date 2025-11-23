@@ -1,0 +1,6 @@
+O›i<?php exit; ?>a:2:{s:7:"content";O:8:"stdClass":24:{s:2:"ID";i:301;s:11:"post_author";s:1:"1";s:9:"post_date";s:19:"2024-04-01 11:00:00";s:13:"post_date_gmt";s:19:"2024-04-01 09:00:00";s:12:"post_content";s:392:"
+<model-viewer src="https://assets.readyplayer.me/Example.glb"
+    alt="Avatar Anima" camera-controls auto-rotate ar ar-modes="scene-viewer quick-look webxr"
+    exposure="1.0" shadow-intensity="1" reveal="interaction" loading="lazy"
+    style="width:100%;height:520px;border-radius:20px;background:radial-gradient(1200px 400px at 60% 20%, rgba(0,255,255,.12), transparent);"></model-viewer>
+";s:10:"post_title";s:13:"Conoce a Nova";s:12:"post_excerpt";s:35:"Avatar hiperreal listo para directo";s:11:"post_status";s:7:"publish";s:14:"comment_status";s:6:"closed";s:11:"ping_status";s:6:"closed";s:13:"post_password";s:0:"";s:9:"post_name";s:13:"conoce-a-nova";s:7:"to_ping";s:0:"";s:6:"pinged";s:0:"";s:13:"post_modified";s:19:"2024-04-01 11:00:00";s:17:"post_modified_gmt";s:19:"2024-04-01 09:00:00";s:21:"post_content_filtered";s:0:"";s:11:"post_parent";i:0;s:4:"guid";s:56:"https://animaavatarstudio.com/?post_type=slide&amp;p=301";s:10:"menu_order";i:0;s:9:"post_type";s:5:"slide";s:14:"post_mime_type";s:0:"";s:13:"comment_count";s:1:"0";s:6:"filter";s:3:"raw";}s:15:"key_version_all";i:5;}

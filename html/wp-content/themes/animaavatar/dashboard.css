@@ -1,0 +1,671 @@
+/* =====================================================
+   Anima Avatar — dashboard.css (Perfil de Usuario & AI Lab)
+   ===================================================== */
+
+/* 1. Variables de Color (Asegurar la consistencia si no cargan del global) */
+:root {
+    --anima-bg: #050505;
+    --anima-card: #0F0F12;
+    --anima-card-light: #1A1A1E;
+    --anima-border: #2A2A35;
+    --cyan: #00F0FF;
+    --purple: #BC13FE;
+    --green: #00FF94;
+    --text-main: #E0E0E0;
+    --text-muted: #858595;
+    --red: #FF5733;
+}
+
+/* --- Estilos del Contenedor Principal --- */
+.anima-account-wrap {
+    padding-top: 40px;
+    padding-bottom: 80px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.anima-account-card {
+    background: var(--anima-card);
+    border: 1px solid var(--anima-border);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+}
+
+/* --- Header del Perfil --- */
+.anima-account-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--anima-border);
+}
+
+.anima-user-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.anima-user-avatar img, .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--purple);
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.6);
+}
+
+.anima-avatar-edit-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--cyan);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: 2px solid var(--anima-card);
+}
+
+.anima-user-info-main {
+    flex-grow: 1;
+}
+
+.anima-user-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.5rem;
+    color: #FFF;
+    margin: 0 0 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.anima-level-badge {
+    background: var(--green);
+    color: #000;
+    font-size: 0.9rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 255, 148, 0.4);
+}
+
+.anima-user-mail {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.anima-header-badges {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.mini-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+    .mini-badge img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+/* --- Grid de Contenido (Dashboard) --- */
+.anima-account-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+@media (max-width: 900px) {
+    .anima-account-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.anima-card {
+    background: var(--anima-card-light);
+    border: 1px solid var(--anima-border);
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.anima-col-span-2 {
+    grid-column: span 2;
+}
+
+.anima-card-title {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--cyan);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--anima-border);
+    padding-bottom: 10px;
+}
+
+.anima-card-body {
+    color: var(--text-main);
+}
+
+.anima-muted {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- QUICK LINKS --- */
+.anima-quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.anima-link-card {
+    background: var(--anima-card);
+    border: 1px solid var(--anima-border);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #FFF;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+    .anima-link-card:hover {
+        border-color: var(--purple);
+        box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .anima-link-card .icon {
+        font-size: 1.5em;
+    }
+
+.anima-notif-dot {
+    background: var(--red);
+    color: #FFF;
+    font-size: 0.8em;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 5px;
+}
+
+/* --- Assets & Courses --- */
+.anima-assets-mini-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+    .anima-assets-mini-grid .anima-asset-mini-card {
+        background: var(--anima-card);
+        border: 1px solid var(--anima-border);
+        border-radius: 8px;
+        overflow: hidden;
+        width: 120px;
+        text-align: center;
+    }
+
+.anima-asset-mini-card .anima-asset-thumb img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+}
+
+.anima-assets-mini-grid h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin: 5px 0 10px 0;
+    color: var(--text-main);
+}
+
+.anima-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.anima-course-card {
+    background: var(--anima-card);
+    border: 1px solid var(--anima-border);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+    .anima-course-card .anima-course-thumb {
+        flex-shrink: 0;
+        width: 120px;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        height: auto;
+    }
+
+        .anima-course-card .anima-course-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .anima-course-card h3 {
+        padding: 10px;
+        font-size: 1.2rem;
+        color: var(--cyan);
+    }
+
+    .anima-course-card .anima-course-title {
+        color: #FFF !important;
+        font-size: 1.1rem;
+        margin: 0 0 5px 0;
+    }
+
+    .anima-course-card .anima-btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        margin-top: 8px;
+        align-self: flex-start;
+    }
+
+    .anima-course-card a {
+        color: var(--purple) !important;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+    }
+
+        .anima-course-card a:hover {
+            color: var(--cyan) !important;
+        }
+
+.anima-bio-card .anima-badge-ia {
+    background: var(--cyan);
+    color: #000;
+    font-size: 0.7em;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+.anima-bio-content {
+    white-space: pre-wrap;
+    font-family: monospace;
+    color: var(--green);
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border-left: 3px solid var(--green);
+}
+
+/* --- Pedidos Recientes (Acordeón) --- */
+.anima-card-toggle {
+    cursor: pointer;
+}
+
+.anima-activity {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.anima-activity-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.anima-activity-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.anima-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--purple);
+    border-radius: 50%;
+}
+
+.anima-activity-title {
+    font-weight: 600;
+}
+
+.anima-activity-meta {
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
+.anima-pad {
+    padding: 30px;
+    background: var(--anima-card, #0F0F12);
+    border: 1px solid var(--anima-border, #2A2A35);
+    border-radius: 12px;
+}
+
+/* ---------------------------------------------------------
+   ESTILOS DEL AI LAB (Nuevo)
+   --------------------------------------------------------- */
+
+/* Contenedor general del AI Lab (usa anima-pad) */
+
+/* Flexbox para el título y el botón "Volver" */
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* Estilo de las pestañas */
+.ai-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+}
+
+.ai-tab {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+    .ai-tab:hover {
+        color: #fff;
+    }
+
+    .ai-tab.active {
+        color: #fff;
+        border-bottom-color: var(--cyan);
+    }
+
+/* Layout de dos columnas */
+.anima-ai-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+    .anima-ai-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Cajas de formulario y resultado */
+.anima-ai-form-box, .anima-ai-result-box {
+    background-color: var(--anima-card-light);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.anima-ai-result-box {
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Terminal Header */
+.ai-terminal-header {
+    background-color: #0d0d0f;
+    padding: 10px 15px;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin: -25px -25px 20px -25px;
+    display: flex;
+    align-items: center;
+}
+
+    .ai-terminal-header .term-title {
+        color: var(--cyan);
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.9em;
+        font-weight: 700;
+    }
+
+/* Contenido terminal */
+.ai-content {
+    white-space: pre-wrap;
+    font-family: 'monospace', sans-serif;
+    color: var(--green); /* Verde hacker */
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 200px;
+    padding-right: 10px;
+    font-size: 0.9em;
+}
+
+/* Acciones */
+.ai-actions {
+    text-align: right;
+    margin-top: 25px;
+}
+
+/* Placeholder imagen */
+.ai-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    font-size: 0.9em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+    .ai-placeholder .dashicons {
+        font-size: 4em;
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.2);
+    }
+
+/* Imagen generada */
+#generated_img {
+    display: none;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    max-height: 300px;
+}
+
+/* Spinner */
+#img_loading {
+    display: none;
+    text-align: center;
+    padding: 60px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cyber-spinner {
+    border: 4px solid rgba(0, 240, 255, 0.3);
+    border-top: 4px solid var(--cyan);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    color: var(--cyan);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* Formularios */
+.field-group {
+    margin-bottom: 20px;
+}
+
+    .field-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95em;
+    }
+
+.anima-ai-form-box input, .anima-ai-form-box select, .anima-ai-form-box textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #0d0d0f;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .anima-ai-form-box input:focus, .anima-ai-form-box select:focus, .anima-ai-form-box textarea:focus {
+        outline: none;
+        border-color: var(--cyan);
+        box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.3);
+    }
+
+/* Botones Generales */
+.anima-btn {
+    background-color: var(--cyan);
+    color: #000;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+    .anima-btn:hover {
+        background-color: #00e0ef;
+        transform: translateY(-1px);
+    }
+
+    .anima-btn.ghost {
+        background: none;
+        border: 1px solid var(--cyan);
+        color: var(--cyan);
+        font-weight: 500;
+    }
+
+        .anima-btn.ghost:hover {
+            background-color: rgba(0, 240, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+.anima-btn-small {
+    padding: 8px 15px;
+    font-size: 0.85em;
+}
+
+.anima-btn.full-width {
+    width: 100%;
+}
+
+/* Settings Form (Redes Sociales) */
+.anima-settings-form label {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+}
+
+.anima-settings-form input[type="text"], .anima-settings-form input[type="url"] {
+    background: #111;
+    border: 1px solid var(--anima-border);
+    color: var(--green);
+    padding: 12px;
+    border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.anima-settings-form input:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    outline: none;
+}

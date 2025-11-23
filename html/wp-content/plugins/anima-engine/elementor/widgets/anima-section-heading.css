@@ -1,0 +1,28 @@
+
+.anima-section-heading {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.anima-section-heading.align-left { text-align: left; }
+.anima-section-heading.align-right { text-align: right; }
+
+.anima-heading {
+  font-size: 1.75rem;
+  color: #e6f0ff;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.anima-subtitle {
+  color: #a9b6d1;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.anima-separator-line {
+  height: 2px;
+  background: linear-gradient(90deg, #6c5ce7, #00cec9);
+  width: 80px;
+  margin: 0 auto 0.75rem;
+  border-radius: 999px;
+}

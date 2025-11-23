@@ -1,0 +1,133 @@
+/* =========================================
+   ANIMA AVATAR - MOBILE MENU EXCLUSIVE
+   ========================================= */
+
+/* Solo aplicamos esto en pantallas menores a 992px */
+@media (max-width: 992px) {
+
+    /* 1. Ocultar elementos de escritorio que molestan */
+    .site-header__actions .header-btn {
+        display: none !important; /* Adiós botón de escritorio */
+    }
+
+    /* 2. Contenedor del Header Móvil */
+    .site-header__container {
+        padding: 0 15px;
+        position: relative;
+    }
+
+    /* 3. Botón Hamburguesa (El activador) */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 44px; /* Tamaño táctil óptimo */
+        height: 44px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        gap: 6px;
+        z-index: 2000; /* Encima de todo */
+        cursor: pointer;
+        margin-left: auto;
+    }
+
+        .menu-toggle .icon-bar {
+            width: 24px;
+            height: 2px;
+            background-color: #fff;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        /* Animación al abrir (se convierte en X) */
+        .menu-toggle[aria-expanded="true"] {
+            border-color: #00F0FF; /* Borde Cyan al abrir */
+        }
+
+            .menu-toggle[aria-expanded="true"] .icon-bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+                background-color: #00F0FF;
+            }
+
+            .menu-toggle[aria-expanded="true"] .icon-bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle[aria-expanded="true"] .icon-bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+                background-color: #00F0FF;
+            }
+
+    /* 4. EL MENÚ DESPLEGABLE (Pantalla completa) */
+    .main-navigation {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #050505; /* Fondo Negro Puro */
+        padding-top: 100px; /* Espacio para no tapar el header */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        /* Animación de entrada */
+        transform: translateX(100%); /* Oculto a la derecha */
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1500;
+    }
+
+        /* Clase que JS añade para mostrar el menú */
+        .main-navigation.toggled {
+            transform: translateX(0);
+            box-shadow: -10px 0 30px rgba(0, 240, 255, 0.1);
+        }
+
+    /* 5. Estilo de los enlaces en móvil */
+    .main-menu__list {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 0;
+    }
+
+        .main-menu__list li {
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+            .main-menu__list li a {
+                display: block;
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #E0E0E0;
+                padding: 20px 0;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+                .main-menu__list li a:active {
+                    background-color: rgba(0, 240, 255, 0.1);
+                    color: #00F0FF;
+                }
+
+    /* Botón extra para "Mi Área" dentro del menú móvil */
+    .mobile-cta-container {
+        margin-top: 40px;
+    }
+
+    .mobile-cta-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border: 1px solid #00F0FF;
+        color: #00F0FF;
+        font-family: 'Rajdhani', sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-decoration: none;
+    }
+}

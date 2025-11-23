@@ -1,0 +1,114 @@
+2025-11-13T20:56:23+00:00 DEBUG #7086 - [New Request] POST /wp-json/wc-admin/plugins/install
+2025-11-13T20:56:23+00:00 DEBUG #7086 - Webhook lock acquired for 'register'.
+2025-11-13T20:56:23+00:00 DEBUG #7086 - Webhook operation 'register' started.
+2025-11-13T20:56:24+00:00 DEBUG #7086 - GET https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-11-13T20:56:24+00:00 ERROR #7086 - Failed to delete webhooks: [Error] Not Found
+2025-11-13T20:56:24+00:00 INFO #7086 - Webhooks deleted.
+2025-11-13T20:56:24+00:00 DEBUG #7086 - POST https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Request Body: {"url":"https:\/\/animaavataragency.com\/wp-json\/paypal\/v1\/incoming","event_types":[{"name":"CHECKOUT.ORDER.APPROVED"},{"name":"CHECKOUT.ORDER.COMPLETED"},{"name":"CHECKOUT.PAYMENT-APPROVAL.REVERSED"},{"name":"PAYMENT.CAPTURE.REFUNDED"},{"name":"PAYMENT.AUTHORIZATION.VOIDED"},{"name":"PAYMENT.CAPTURE.REVERSED"},{"name":"PAYMENT.ORDER.CANCELLED"},{"name":"PAYMENT.CAPTURE.DENIED"},{"name":"PAYMENT.CAPTURE.COMPLETED"},{"name":"VAULT.PAYMENT-TOKEN.CREATED"},{"name":"VAULT.PAYMENT-TOKEN.DELETED"},{"name":"PAYMENT.CAPTURE.PENDING"},{"name":"PAYMENT.SALE.COMPLETED"},{"name":"PAYMENT.SALE.REFUNDED"},{"name":"BILLING.SUBSCRIPTION.CANCELLED"},{"name":"BILLING.PLAN.PRICING-CHANGE.ACTIVATED"},{"name":"CATALOG.PRODUCT.UPDATED"},{"name":"BILLING.PLAN.UPDATED"}]}
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-11-13T20:56:24+00:00 ERROR #7086 - Failed to subscribe webhooks: [Error] Not Found
+2025-11-13T20:56:24+00:00 DEBUG #7086 - Webhook lock released for 'register'.
+2025-11-13T21:03:38+00:00 DEBUG #1861 - [New Request] GET /wp-admin/admin.php
+2025-11-13T21:03:38+00:00 DEBUG #1861 - GET https://api.woocommerce.com/integrations/ppc/v1/customer/partners/K8SKZ36LQBWXJ/merchant-integrations/
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-11-13T21:03:38+00:00 WARNING #1861 - [Error] Not Found CONTEXT: {"args":{"method":"GET","headers":{"Authorization":"Bearer token","Content-Type":"application/json"}},"response":{"headers":{},"body":"{"statusCode":404,"error":"Not Found","message":"Not Found"}","response":{"code":404,"message":"Not Found"},"cookies":[],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-11-13T21:03:42+00:00 DEBUG #3532 - [New Request] GET /wp-json/wc/v3/wc_paypal/webhooks
+2025-11-13T21:03:42+00:00 DEBUG #3532 - GET https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-11-13T21:05:01+00:00 DEBUG #3730 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-11-13T21:05:01+00:00 INFO #3730 - Generating onboarding URL for: production-advanced_vaulting-express_checkout-
+2025-11-13T21:05:02+00:00 DEBUG #3730 - POST https://api.woocommerce.com/integrations/ppc/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/animaavataragency.com\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoicHJvZHVjdGlvbi1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiJkOTIxNTBjYmYxYmI1MTdjZjFkZjlmYjJkYjEzM2Q2NCJ9","return_url_description":"Volver a tu tienda.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: 6710f99cbab32
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-11-13T21:05:08+00:00 DEBUG #1085 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-11-13T21:05:08+00:00 DEBUG #1085 - Loaded onboarding URL from cache: production-advanced_vaulting-express_checkout-
+2025-11-13T21:05:08+00:00 INFO #1085 - Using cached onboarding URL for: production-advanced_vaulting-express_checkout-
+2025-11-13T21:05:08+00:00 DEBUG #8349 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-11-13T21:05:08+00:00 DEBUG #8349 - Loaded onboarding URL from cache: production-advanced_vaulting-express_checkout-
+2025-11-13T21:05:08+00:00 INFO #8349 - Using cached onboarding URL for: production-advanced_vaulting-express_checkout-
+2025-11-13T21:06:29+00:00 DEBUG #9826 - [New Request] POST /wp-json/wc/v3/wc_paypal/authenticate/oauth
+2025-11-13T21:06:29+00:00 INFO #9826 - Storing one-time OAuth credentials... CONTEXT: {"shared_id":"BAA6Iox1SuXamC-AwNbJzctK8DPmfLwtcR5W-kMN9cTIAZlPvqKkiMoxZtmDoLgMCHnISAzd-w7vt2AWKU","auth_code":"C21AAN8majZgDBBt1pRxiXtewpc_r2Uxd3mlpdFbJw7o2TxGQN8vXa2PyZbWt-4Nz3Aa6e9r1f1PMxtmLBY5AWhoWUa8rgyUQ","use_sandbox":false}
+2025-11-13T21:09:56+00:00 DEBUG #6997 - [New Request] GET /wp-admin/admin.php
+2025-11-13T21:09:56+00:00 DEBUG #6997 - Validating onboarding ppcpToken: ey...Q2NCJ9
+2025-11-13T21:09:56+00:00 INFO #6997 - Validated onboarding ppcpToken: ey...Q2NCJ9
+2025-11-13T21:09:56+00:00 INFO #6997 - Extracting connection data from request...
+2025-11-13T21:09:56+00:00 INFO #6997 - Found OAuth merchant data in request CONTEXT: {"merchant_id":"VCRXAT8GCRHAA","merchant_email":"multimediatus@gmail.com","seller_type":"business"}
+2025-11-13T21:09:56+00:00 INFO #6997 - Attempting OAuth login to PayPal... CONTEXT: {"sandbox":false,"shared_id":"BAA6Iox1SuXamC-AwNbJzctK8DPmfLwtcR5W-kMN9cTIAZlPvqKkiMoxZtmDoLgMCHnISAzd-w7vt2AWKU"}
+2025-11-13T21:09:56+00:00 DEBUG #6997 - POST https://api-m.paypal.com/v1/oauth2/token/
+Response Debug ID: 90ac5eed074b5
+Response: Array
+(
+    [code] => 200
+    [message] => OK
+)
+
+2025-11-13T21:09:56+00:00 DEBUG #6997 - GET https://api-m.paypal.com/v1/customer/partners/K8SKZ36LQBWXJ/merchant-integrations/credentials/
+Response Debug ID: bb8cb2cd09e73
+Response: Array
+(
+    [code] => 200
+    [message] => OK
+)
+
+2025-11-13T21:09:56+00:00 INFO #6997 - Updating connection details CONTEXT: {"is_sandbox":false,"client_id":"BAA6Iox1SuXamC-AwNbJzctK8DPmfLwtcR5W-kMN9cTIAZlPvqKkiMoxZtmDoLgMCHnISAzd-w7vt2AWKU","client_secret":"EJPxFF7pWdIBFgqvt27wxyVsFlosTkCHdtH39W2tGciwlJjdZGdZfvU2C8vBQ9cR5ju9tbA3hG2FjoxV","merchant_id":"VCRXAT8GCRHAA","merchant_email":"multimediatus@gmail.com","merchant_country":"","seller_type":"business"}
+2025-11-13T21:09:56+00:00 INFO #6997 - Merchant successfully connected to PayPal
+2025-11-13T21:09:56+00:00 INFO #6997 - Calling internal REST endpoint [https://animaavataragency.com/wp-json/wc/v3/wc_paypal/common/seller-account]
+2025-11-13T21:09:59+00:00 DEBUG #6997 - Finished internal REST call [https://animaavataragency.com/wp-json/wc/v3/wc_paypal/common/seller-account]
+2025-11-13T21:09:59+00:00 INFO #6997 - Internal REST success! CONTEXT: {"json":{"success":true,"data":{"country":"ES"}}}
+2025-11-13T21:09:59+00:00 INFO #6997 - Flushing API caches...
+2025-11-13T21:09:59+00:00 INFO #6997 - Merchant connected, complete onboarding and set defaults.
+2025-11-13T21:09:59+00:00 DEBUG #6997 - Webhook lock acquired for 'register'.
+2025-11-13T21:09:59+00:00 DEBUG #6997 - Webhook operation 'register' started.
+2025-11-13T21:09:59+00:00 DEBUG #6997 - GET https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-11-13T21:09:59+00:00 ERROR #6997 - Failed to delete webhooks: [Error] Not Found
+2025-11-13T21:09:59+00:00 INFO #6997 - Webhooks deleted.
+2025-11-13T21:10:00+00:00 DEBUG #6997 - POST https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Request Body: {"url":"https:\/\/animaavataragency.com\/wp-json\/paypal\/v1\/incoming","event_types":[{"name":"CHECKOUT.ORDER.APPROVED"},{"name":"CHECKOUT.ORDER.COMPLETED"},{"name":"CHECKOUT.PAYMENT-APPROVAL.REVERSED"},{"name":"PAYMENT.CAPTURE.REFUNDED"},{"name":"PAYMENT.AUTHORIZATION.VOIDED"},{"name":"PAYMENT.CAPTURE.REVERSED"},{"name":"PAYMENT.ORDER.CANCELLED"},{"name":"PAYMENT.CAPTURE.DENIED"},{"name":"PAYMENT.CAPTURE.COMPLETED"},{"name":"VAULT.PAYMENT-TOKEN.CREATED"},{"name":"VAULT.PAYMENT-TOKEN.DELETED"},{"name":"PAYMENT.CAPTURE.PENDING"},{"name":"PAYMENT.SALE.COMPLETED"},{"name":"PAYMENT.SALE.REFUNDED"},{"name":"BILLING.SUBSCRIPTION.CANCELLED"},{"name":"BILLING.PLAN.PRICING-CHANGE.ACTIVATED"},{"name":"CATALOG.PRODUCT.UPDATED"},{"name":"BILLING.PLAN.UPDATED"}]}
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-11-13T21:10:00+00:00 ERROR #6997 - Failed to subscribe webhooks: [Error] Not Found
+2025-11-13T21:10:00+00:00 DEBUG #6997 - Webhook lock released for 'register'.

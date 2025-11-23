@@ -1,0 +1,189 @@
+/* =========================================
+   ANIMA SOCIAL NEXUS: ESTILOS CYBERPUNK
+   ========================================= */
+
+/* --- Variables (Ajusta a tu paleta) --- */
+:root {
+    --nexus-neon-blue: #0ff;
+    --nexus-neon-pink: #f0f;
+    --nexus-neon-green: #39ff14;
+    --nexus-dark-bg: #111;
+    --nexus-darker-bg: #0a0a0a;
+    --nexus-text: #eee;
+}
+
+/* --- Botones Generales del Nexus --- */
+.anima-nexus-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-family: 'Rajdhani', sans-serif; /* Asegúrate de que esta fuente esté cargada */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--nexus-neon-blue);
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--nexus-neon-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+    .anima-nexus-btn:hover:not(.disabled) {
+        background: rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 10px var(--nexus-neon-blue);
+        text-shadow: 0 0 5px var(--nexus-neon-blue);
+    }
+
+    .anima-nexus-btn .dashicons {
+        margin-right: 6px;
+        font-size: 1.2em;
+    }
+
+    /* Estado: Botón Deshabilitado / Procesando / Pendiente */
+    .anima-nexus-btn.disabled,
+    .anima-nexus-pending-btn {
+        opacity: 0.7;
+        cursor: not-allowed;
+        border-color: #666;
+        color: #aaa;
+        background: rgba(100, 100, 100, 0.1);
+    }
+
+        .anima-nexus-pending-btn:hover {
+            box-shadow: none;
+            background: rgba(100, 100, 100, 0.1);
+        }
+
+
+/* --- Efecto Glitch de Carga --- */
+@keyframes nexus-glitch-anim {
+    0% {
+        clip-path: inset(20% 0 50% 0);
+        transform: translate(-2px, 1px);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+        transform: translate(2px, -1px);
+    }
+
+    40% {
+        clip-path: inset(40% 0 30% 0);
+        transform: translate(-2px, 1px);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+        transform: translate(2px, -1px);
+    }
+
+    80% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translate(-2px, 1px);
+    }
+
+    100% {
+        clip-path: inset(30% 0 40% 0);
+        transform: translate(2px, -1px);
+    }
+}
+
+.nexus-loading-glitch {
+    position: relative;
+    display: inline-block;
+}
+
+    .nexus-loading-glitch::before,
+    .nexus-loading-glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--nexus-dark-bg); /* Mismo fondo del botón */
+    }
+
+    .nexus-loading-glitch::before {
+        left: 2px;
+        text-shadow: -1px 0 var(--nexus-neon-pink);
+        clip-path: inset(0 0 0 0);
+        animation: nexus-glitch-anim 1s infinite linear alternate-reverse;
+    }
+
+    .nexus-loading-glitch::after {
+        left: -2px;
+        text-shadow: 1px 0 var(--nexus-neon-blue);
+        clip-path: inset(0 0 0 0);
+        animation: nexus-glitch-anim 1.5s infinite linear alternate;
+    }
+
+/* --- Tarjetas de Notificación (Para más adelante) --- */
+.nexus-request-card {
+    background: var(--nexus-darker-bg);
+    border: 1px solid var(--nexus-neon-blue);
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .nexus-request-card.processing {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+.nexus-request-actions .nexus-accept-btn {
+    border-color: var(--nexus-neon-green);
+    color: var(--nexus-neon-green);
+    margin-right: 10px;
+}
+
+    .nexus-request-actions .nexus-accept-btn:hover {
+        background: rgba(57, 255, 20, 0.2);
+        box-shadow: 0 0 10px var(--nexus-neon-green);
+    }
+
+.nexus-request-actions .nexus-block-btn {
+    border-color: var(--nexus-neon-pink);
+    color: var(--nexus-neon-pink);
+}
+
+    .nexus-request-actions .nexus-block-btn:hover {
+        background: rgba(255, 0, 255, 0.2);
+        box-shadow: 0 0 10px var(--nexus-neon-pink);
+    }
+
+/* --- Insignia de Notificación en Menú (Badge) --- */
+.nexus-notification-badge {
+    display: inline-block;
+    background: var(--nexus-neon-pink);
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 50%;
+    margin-left: 5px;
+    vertical-align: top;
+    box-shadow: 0 0 5px var(--nexus-neon-pink);
+    animation: nexus-pulse-anim 2s infinite;
+}
+
+@keyframes nexus-pulse-anim {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 5px rgba(255, 0, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 255, 0);
+    }
+}

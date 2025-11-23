@@ -1,0 +1,19 @@
+/* Modal base */
+.anima-modal{position:fixed;inset:0;display:none;z-index:9999}
+.anima-modal.is-open{display:block}
+.anima-modal__overlay{position:absolute;inset:0;background:rgba(0,0,0,.65);backdrop-filter:saturate(140%) blur(3px)}
+.anima-modal__dialog{position:relative;max-width:980px;margin:4vh auto;background:#0f1722;border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.6);padding:24px;max-height:92vh;overflow:auto}
+.anima-modal__close{position:absolute;top:8px;right:12px;font-size:28px;line-height:1;background:transparent;border:0;color:#e8f0ff;cursor:pointer}
+.anima-modal__title{margin:0 0 .25rem;font-size:1.4rem}
+.anima-modal__meta{color:#9fb0c7;margin:.1rem 0}
+.anima-modal__media img{width:100%;height:auto;border-radius:12px;margin:.5rem 0 1rem}
+.anima-modal__gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}
+.anima-modal__gallery img{width:100%;height:auto;border-radius:10px}
+.anima-modal__footer{margin-top:12px}
+.anima-modal__footer .project-cta-button{display:inline-block;padding:.55rem .95rem;background:#0ea5e9;color:#03111b;border-radius:999px;text-decoration:none;font-weight:700}
+
+/* === Safe editing in Elementor === */
+.elementor-editor-active .anima-projects-grid a,
+.elementor-editor-active .anima-projects-grid button {
+  pointer-events: none !important;
+}

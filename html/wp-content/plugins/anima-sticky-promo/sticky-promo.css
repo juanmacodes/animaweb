@@ -1,0 +1,221 @@
+/* --- Sticky Promo Metahuman V4 - Premium Cyberpunk --- */
+
+:root {
+    --neon-cyan: #00fff2;
+    --neon-purple: #bc13fe;
+    --neon-pink: #ff00ff;
+    --neon-green: #00ff94;
+    --bg-dark: #0a0a0c;
+    --text-light: #ffffff;
+}
+
+.anima-promo-overlay {
+    /* Base de Posicionamiento Fijo */
+    position: fixed;
+    z-index: 99999; /* Capa muy alta */
+    width: 340px;
+    max-width: 90%;
+    padding: 25px 20px;
+    text-align: center;
+    /* Diseño futurista avanzado */
+    background: linear-gradient(145deg, rgba(15, 15, 18, 0.95) 0%, rgba(25, 20, 35, 0.9) 100%);
+    border-radius: 16px;
+    /* Glassmorphism */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    /* Sombras complejas para profundidad */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 242, 0.2), inset 0 0 15px rgba(188, 19, 254, 0.1);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Importante para el borde de gradiente */
+    position: fixed;
+    border: none; /* Quitamos borde estándar */
+}
+
+    /* Borde Gradiente usando pseudo-elemento para soportar border-radius */
+    .anima-promo-overlay::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        padding: 2px; /* Grosor del borde */
+        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none; /* Para que no interfiera con clicks */
+        z-index: -1;
+    }
+
+    /* Efecto Hover en el contenedor */
+    .anima-promo-overlay:hover {
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 242, 0.4), inset 0 0 20px rgba(188, 19, 254, 0.2);
+    }
+
+
+    /* ====================================
+   POSICIONAMIENTO (Se mantiene igual)
+   ==================================== */
+    .anima-promo-overlay.position-right {
+        right: 25px;
+        left: auto;
+    }
+
+    .anima-promo-overlay.position-left {
+        left: 25px;
+        right: auto;
+    }
+
+    .anima-promo-overlay.vertical-top {
+        top: 25px;
+        bottom: auto;
+        transform: none;
+    }
+
+    .anima-promo-overlay.vertical-center {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+    }
+
+    .anima-promo-overlay.vertical-bottom {
+        top: auto;
+        bottom: 25px;
+        transform: none;
+    }
+
+
+/* ====================================
+   CONTENIDO INTERNO
+   ==================================== */
+
+/* Botón de Cierre Mejorado */
+.promo-close-btn {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: var(--bg-dark);
+    color: var(--neon-cyan);
+    border: 2px solid var(--neon-purple);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 28px; /* Centrado vertical */
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(188, 19, 254, 0.5);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+    .promo-close-btn:hover {
+        background: var(--neon-purple);
+        color: var(--text-light);
+        border-color: var(--neon-cyan);
+        box-shadow: 0 0 15px var(--neon-cyan);
+        transform: rotate(90deg);
+    }
+
+.promo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.promo-avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--neon-green);
+    box-shadow: 0 0 20px rgba(0, 255, 148, 0.6), inset 0 0 10px rgba(0, 255, 148, 0.4);
+    animation: pulse-avatar-premium 3s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+@keyframes pulse-avatar-premium {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 255, 148, 0.5);
+        transform: scale(1);
+    }
+
+    100% {
+        box-shadow: 0 0 30px rgba(0, 255, 148, 0.9);
+        transform: scale(1.03);
+    }
+}
+
+.promo-text h3 {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--neon-cyan);
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+.promo-text p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    margin: 6px 0 0 0;
+    line-height: 1.4;
+}
+
+/* Botón CTA Premium */
+.anima-btn.promo-btn {
+    background: linear-gradient(90deg, var(--neon-purple) 0%, var(--neon-pink) 100%);
+    color: var(--text-light) !important;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(188, 19, 254, 0.4);
+}
+
+    /* Brillo al pasar el mouse sobre el botón */
+    .anima-btn.promo-btn:hover {
+        background: linear-gradient(90deg, var(--neon-cyan) 0%, var(--neon-purple) 100%);
+        box-shadow: 0 0 30px var(--neon-cyan), 0 5px 20px rgba(0, 0, 0, 0.5);
+        transform: translateY(-2px) scale(1.02);
+    }
+
+    .anima-btn.promo-btn .dashicons {
+        font-size: 1.2em;
+        transition: transform 0.3s ease;
+    }
+
+    .anima-btn.promo-btn:hover .dashicons {
+        transform: translateX(4px);
+    }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .anima-promo-overlay {
+        width: auto;
+        left: 15px !important;
+        right: 15px !important;
+        padding: 20px 15px;
+    }
+
+        .anima-promo-overlay.vertical-center {
+            top: auto;
+            bottom: 20px;
+            transform: none;
+        }
+
+    .promo-text h3 {
+        font-size: 1.2rem;
+    }
+}

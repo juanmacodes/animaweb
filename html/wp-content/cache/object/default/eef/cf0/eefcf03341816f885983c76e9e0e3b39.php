@@ -1,0 +1,1 @@
+j‹ i<?php exit; ?>a:2:{s:7:"content";a:9:{i:0;s:10:"wc-pending";i:1;s:13:"wc-processing";i:2;s:10:"wc-on-hold";i:3;s:12:"wc-completed";i:4;s:12:"wc-cancelled";i:5;s:11:"wc-refunded";i:6;s:9:"wc-failed";i:7;s:17:"wc-checkout-draft";i:8;s:5:"trash";}s:15:"key_version_all";i:5;}

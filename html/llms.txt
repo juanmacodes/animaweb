@@ -1,0 +1,194 @@
+﻿Generado por All in One SEO v4.9.0, este es un archivo llms.txt, utilizado por LLMs para indexar el sitio.
+
+# Anima Avatar Agency
+
+## Sitemaps
+
+- [XML Sitemap](https://animaavataragency.com/sitemap.xml): Contains all public & indexable URLs for this website.
+
+## Entradas
+
+- [Blog](https://animaavataragency.com/blog/)
+- [Realidad Virtual: Tendencias para empresas](https://animaavataragency.com/realidad-virtual-tendencias-empresas/) - La Realidad Virtual (VR) ha dejado de ser una curiosidad tecnológica para convertirse en una herramienta clave en sectores como la formación, el marketing y la colaboración remota. Estas son algunas de las principales tendencias que están marcando su adopción en empresas: 1. Formación inmersiva y segura Las empresas están usando simulaciones VR para entrenar
+- [Tecnologías de Streaming en 2025](https://animaavataragency.com/tecnologias-streaming-2025/) - Resumen: 2025 acelera una nueva ola en vídeo online: códecs más eficientes (AV1/VVC), distribución sobre HTTP/3 + QUIC, latencias sub-2 s con LL-HLS/DASH, producción cloud nativa y capas de IA para upscaling, moderación y personalización. Además, el negocio se mueve hacia FAST channels, compras integradas y experiencias interactivas. 1) Nuevos códecs y calidad de imagen
+- [Anima World: eventos y minijuegos sociales](https://animaavataragency.com/anima-world-eventos-y-minijuegos-sociales/) - Resumen: Anima World es un espacio persistente donde marcas y comunidades se reúnen en eventos en vivo, compiten en minijuegos sociales y desbloquean recompensas compartidas. Un “tercer lugar” digital que mezcla entretenimiento, formación ligera y comercio integrado. ¿Qué es Anima World? Un hub siempre activo con: Plazas y salas temáticas para encuentros, charlas y premieres.
+- [Cómo diseñamos avatares listos para producción](https://animaavataragency.com/como-disenamos-avatares-listos-para-produccion/) - Contenido de ejemplo para el blog.
+- [Animación facial y mocap: nuestro pipeline](https://animaavataragency.com/animacion-facial-y-mocap-nuestro-pipeline/) - Contenido de ejemplo para el blog.
+- [WebXR para marketing](https://animaavataragency.com/webxr-para-marketing/) - Estrategias para campañas inmersivas en navegador.
+- [Texturas KTX2 y DRACO](https://animaavataragency.com/texturas-ktx2-draco/) - Optimización de recursos para WebXR y streaming.
+- [IA conversacional con voz](https://animaavataragency.com/ia-conversacional-voz/) - Implementación de asistentes vocales en experiencias XR.
+- [Claves para un evento XR](https://animaavataragency.com/claves-evento-xr/) - Checklist para eventos inmersivos de alto impacto.
+- [Qué es un Digital Human](https://animaavataragency.com/que-es-un-digital-human/) - Definimos el concepto y sus aplicaciones prácticas.
+- [Tendencias de avatares 3D](https://animaavataragency.com/tendencias-avatares-3d/) - Cómo evoluciona el diseño de avatares hiperrealistas.
+- [Diseño conversacional para mundos virtuales](https://animaavataragency.com/diseno-conversacional/) - Conversaciones en XR.
+- [KPIs para medir mundos 3D](https://animaavataragency.com/kpis-mundos-3d/) - Métricas para 3D.
+
+## Páginas
+
+- [Inicio](https://animaavataragency.com/) - ✕ ACTIVAR TRANSMISIONES NEURALES
+- [inicio2](https://animaavataragency.com/inicio2/)
+- [Academy](https://animaavataragency.com/academy/) - Lvl 1 admin multimediatus@gmail.com Sincronización Neural (XP) 0 / 1000 Bienvenido al Nexus de Entrenamiento 💳 0 Créditos 🏠 Dashboard Unreal Engine Creación de mundos y entornos 3D. → Metahumans Diseño de avatares hiperrealistas. → Interactive Programación visual y lógica. → PróximamenteVer curso Programación orientada a streaming PróximamenteVer curso Animación Metahuman Aprende a moverte dinámicamente
+- [Historias](https://animaavataragency.com/historias/) - Cursos Anima Ver curso Creación Metahuman Novedades
+- [Comunidad](https://animaavataragency.com/comunidad-2/)
+- [Assets metaverso](https://animaavataragency.com/assets-metaverso/)
+- [Objetos del metaverso](https://animaavataragency.com/objetos-del-metaverso/)
+- [Anima Lab](https://animaavataragency.com/anima-lab/)
+- [Nexus](https://animaavataragency.com/nexus/)
+- [Comunidad](https://animaavataragency.com/comunidad/)
+- [Accede al metaverso](https://animaavataragency.com/login/)
+- [Proyectos](https://animaavataragency.com/proyectos-2/) - Un poco de lo que hacemos Descubre como trabajamos. Influencer Virtual | Serie Z Ver detalle × Influencer Virtual | Serie Z Descripción del proyecto y métricas clave. Mundo Interactivo | Marca Y Ver detalle × Mundo Interactivo | Marca Y Descripción del proyecto y métricas clave. Avatar Hiperreal | Campaña X Ver detalle ×
+- [Elementor #8335](https://animaavataragency.com/elementor-8335/) - Un poco de lo que hacemos Descubre como trabajamos. Influencer Virtual | Serie Z Ver detalle × Influencer Virtual | Serie Z Descripción del proyecto y métricas clave. Mundo Interactivo | Marca Y Ver detalle × Mundo Interactivo | Marca Y Descripción del proyecto y métricas clave. Avatar Hiperreal | Campaña X Ver detalle ×
+- [pro](https://animaavataragency.com/pro/) - Influencer Virtual | Serie Z Ver detalle × Influencer Virtual | Serie Z Descripción del proyecto y métricas clave. Mundo Interactivo | Marca Y Ver detalle × Mundo Interactivo | Marca Y Descripción del proyecto y métricas clave. Avatar Hiperreal | Campaña X Ver detalle × Avatar Hiperreal | Campaña X Descripción del proyecto y
+- [Inicio](https://animaavataragency.com/inicio-3/) - [anima_model src=»https://assets.readyplayer.me/Example.glb» alt=»Avatar demo» ar=»true» auto_rotate=»true» camera_controls=»true» exposure=»1.0″ shadow_intensity=»1″ reveal=»interaction» loading=»lazy»]
+- [Startup Home](https://animaavataragency.com/startup-home/)
+- [Avatares](https://animaavataragency.com/avatares/) - Explora nuestros avatares listos para Unreal Engine, Unity y WebGL. Utiliza los filtros por tecnología para encontrar el pipeline perfecto.
+- [Experiencia Inmersiva](https://animaavataragency.com/experiencia-inmersiva/) - Experiencia inmersiva AnimaDescubre un recorrido interactivo con avatares, ambientes volumétricos y analítica integrada.[anima_model src="https://example.com/avatar-demo.glb" alt="Avatar 3D demo" ar="true" auto_rotate="true" camera_controls="true"]
+- [Anima Live](https://animaavataragency.com/anima-live/) - Anima Live — Crea tu avatar en minutos App en Unreal Engine para generar avatares listos para streaming y VR. Descargar demo Solicitar acceso Cómo funciona Captura: escanea desde móvil o sube fotos de referencia. Personaliza: rasgos, ropa, expresiones y rigs listos. Exporta: genera GLB/FBX con blendshapes optimizados. Características clave Rig facial completo con lipsync
+- [Contacto](https://animaavataragency.com/contacto/) - Contacto Contenido de demostración para Contacto.
+- [Anima World](https://animaavataragency.com/anima-world-2/) - Anima World Contenido de demostración para Anima World.
+- [VR](https://animaavataragency.com/vr/) - VR Contenido de demostración para VR.
+- [Holográficos](https://animaavataragency.com/holograficos/) - Holográficos Contenido de demostración para Holográficos.
+- [Streaming](https://animaavataragency.com/streaming/) - Streaming Contenido de demostración para Streaming.
+- [Servicios](https://animaavataragency.com/servicios-2/) - Servicios Contenido de demostración para Servicios.
+- [IA](https://animaavataragency.com/ia/) - IA Contenido de demostración para IA.
+- [Cursos](https://animaavataragency.com/cursos/) - Cursos Contenido de demostración para Cursos.
+- [Proyectos](https://animaavataragency.com/proyectos/) - Proyectos Contenido de demostración para Proyectos.
+- [Blog](https://animaavataragency.com/blog-3/) - Blog Contenido de demostración para Blog.
+- [Avatares holográficos](https://animaavataragency.com/avatares-holograficos/) - Experiencias interactivas con hologramas en stands o presentaciones Shows de música o performance con avatares que “aparezcan” en el espacio real. Escenografías digitales y efectos visuales dinámicos en directo. Avatares que aparecen físicamente en el espacio, sorprendiendo al público con experiencias inmersivas y memorables. Avatares que aparecen físicamente en el espacio, sorprendiendo al público con
+- [Servicios](https://animaavataragency.com/servicios/)
+- [Sobre Anima](https://animaavataragency.com/sobre-anima/)
+- [Anima World](https://animaavataragency.com/anima-world/)
+- [Anima Avatar Agency](https://animaavataragency.com/full-page-slider/) - No importa quien seas, sino quien quieras ser ANIMA Creamos avatares que trascienden la realidad. Somos una agencia especializada en el desarrollo de avatares 3D para todo tipo de experiencias digitales. Si puedes imaginarlo, podemos darle vida. Avatares en directo Transmisiones en Twitch, TikTok, YouTube y más, con avatares animados en tiempo real y escenografías
+- [Contacto](https://animaavataragency.com/contact/) - Got A Project Or A Partnership In Mind? Holisticly leverage other’s user friendly platforms with progressive products. Proactively matrix exceptional content through B2C schemas. Seamlessly exploit cutting-edge niche markets rather than premium results. Collaboratively restore pandemic e-business and plug-and-play data. Conveniently target exceptional platforms whereas standards compliant data. Phone: +99 (0)1047011888 +99 (0)1310011444 Email: info@madsparrow.com
+- [Avatares VR](https://animaavataragency.com/elementor-3309/) - Eventos en VR con avatares realistas o estilizados Juegos colaborativos o sociales en entornos VR. Entrenamiento o formación virtual usando avatares interactivos. Reuniones y presentaciones corporativas en realidad virtual Con entornos personalizables, animaciones expresivas y una experiencia 100% inmersiva. ¿Tienes un proyecto y necesitas un avatar? Escribenos y te daremos toda la información necesaria en
+- [Avatares IA](https://animaavataragency.com/elementor-3301/) - forma autónoma. Asistentes virtuales personalizados para marcas o creadores. Clones digitales de influencers que interactúan en redes. Personajes narrativos para contenidos automatizados (cuentos, guiones, podcast). Uso de diferentes inteligencias artificiales Todo con personalidad, memoria y estilo único, integrando voz, gestos y emociones. ¿Tienes un proyecto y necesitas un avatar? Escribenos y te daremos toda la
+- [Avatares streaming](https://animaavataragency.com/avatares-streaming/) - y otras plataformas. Emisión multiplataforma simultánea para llegar a más audiencia en directo. VTubers con mocap en tiempo real (rostro, cuerpo y voz). Escenografías digitales y efectos visuales dinámicos en directo. Colaboraciones entre streamers humanos y avatares Monotonectally parallel task cross-unit e-tailers without performance based platforms. Phosfluorescently unleash market-driven niche markets via flexible functionalities. Interacción
+- [Services](https://animaavataragency.com/services/) - unique deliverables. Development Create a platform with the best and coolest quality from us. UI/UX Designer We provide UI/UX Design services, and of course with the best quality Graphik Designer We provide Graphic Design services, with the best designers Motion Graphik Create a platform with the best and coolest quality from us. Photography We provide
+- [About Us](https://animaavataragency.com/about-us/) - We a graphic design agencyforvisually compelling stories.​ Our Team Rules Authoritatively seize web readiness. Completely benchmark partnerships. Team Rule (No. 01) Love what de do Completely plagiarize intermandated services whereas multifunctional mindshare. Monotonectally mesh low-risk high-yield methods of empowerment after cross functional testing procedures. Team Rule (No. 02) Trust Dynamically maintain reliable e-services without prospective
+- [Team](https://animaavataragency.com/team/) - Team Widget Style #1 Samantha Marisa Graphic Designer Rapidiously synergize revolutionary portals with holistic leadership skills. Liam Willson CO-Founder, Project Manager Authoritatively brand turnkey models before high standards in action items. Ava Ludger Project Manager Monotonectally deploy high-quality customer service whereas business initiatives. Team Widget Style #2 Olivia Sixten Web Developer Authoritatively benchmark customized architectures
+- [Image Gallery](https://animaavataragency.com/image-gallery/) - Gallery Widget Simple Grid 3 col. Hover Style #1 Gallery Widget Justified Hover Style #2 Gallery Widget Masonry Hover Style #3
+- [Creative Agency](https://animaavataragency.com/creative-agency/) - Sharing Your Vision Efficiently plagiarize leveraged quality vectors whereas principle-centered human capital. Dramatically initiate intermandated quality vectors before web-enabled innovation. START PROJECT Why Most Is The Best Choice? Watch this one minute video so you understand why you should use our services! The Service We Provide For You Development Create a platform with the best
+- [Home Portfolio](https://animaavataragency.com/home-portfolio/) - Freezing Birthday creative Stream Shop design Random Risk photo Share Spark style Wiggly Finger creative Subsequent Sneeze design Color Current photo Justice Robot style The Dark Side creative
+- [Grid Masonry](https://animaavataragency.com/grid-masonry/) - All All Categories Creative Design Photo Style Freezing Birthday creative Stream Shop design Random Risk photo Share Spark style Wiggly Finger creative Subsequent Sneeze design Color Current photo Justice Robot style The Dark Side creative
+- [Grid Style 2](https://animaavataragency.com/grid-style-2/) - Look, choose, adjust, launch Take a look at the theme provided. Choose the suitable layout. Customize it. Use the selected style and launch the project. All All Categories Creative Design Photo Style Freezing Birthday creative Stream Shop design Random Risk photo Share Spark style Load More
+- [Blog Card](https://animaavataragency.com/blog-card/) - Our stories We create AWESOME Blog Design UI vs. UX: What’s the difference? Completely formulate integrated methods Globally maintain multifunctional products before… Mad Sparrow August 9, 2022 2 min read Events Uncategorized UX design is shifting towards realism Efficiently strategize just in time process Globally maintain multifunctional products before… Mad Sparrow August 9, 2022 2
+- [Business & Corporate](https://animaavataragency.com/business-corporate/) - Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme Powered By Mad Sparrow • Theme
+- [Personal Portfolio](https://animaavataragency.com/personal-portfolio/) - Hi, i’m Mad Sparrow Creative Designer. Since creative designers often interact with creative teams, managers and clients, they need strong communication skills. instagram pinterest 500px All All Categories Creative Design Photo Style Freezing Birthday creative Stream Shop design Random Risk photo Share Spark style Wiggly Finger creative Subsequent Sneeze design Color Current photo Justice Robot
+- [Personal CV](https://animaavataragency.com/personal-cv/) - Mad Sparrow 34 years / London / Freelance Credibly e-enable standards compliant users rather than front-end solutions. Enthusiastically harness client-focused action items before corporate intellectual capital. Uniquely repurpose world-class infrastructures through client-centered collaboration and idea-sharing. Progressively mesh magnetic quality vectors before dynamic markets. Competently leverage existing leading-edge collaboration and idea-sharing with 2.0 total linkage.
+- [Grid Style 1](https://animaavataragency.com/grid-style-1/) - Look, choose, adjust, launch Take a look at the theme provided. Choose the suitable layout. Customize it. Use the selected style and launch the project. All All Categories Creative Design Photo Style Freezing Birthday creative Stream Shop design Random Risk photo Share Spark style Wiggly Finger creative Subsequent Sneeze design Load More
+- [Grid Standard](https://animaavataragency.com/grid-standard/) - Look, choose, adjust, launch Take a look at the theme provided. Choose the suitable layout. Customize it. Use the selected style and launch the project. All All Categories Creative Design Photo Style Freezing Birthday creative Stream Shop design Random Risk photo Share Spark style Wiggly Finger creative Subsequent Sneeze design Load More
+- [Tienda](https://animaavataragency.com/tienda/)
+- [Página de ejemplo](https://animaavataragency.com/pagina-ejemplo/) - Esta es una página de ejemplo. Es diferente a una entrada del blog porque permanecerá en un solo lugar y aparecerá en la navegación de tu sitio (en la mayoría de los temas). La mayoría de las personas comienzan con una página «Acerca de» que les presenta a los visitantes potenciales del sitio. Podrías decir
+- [Portfolio Layered Landing](https://animaavataragency.com/portfolio-flare-landing/) - [vc_row type=»full_width_background» full_screen_row_position=»middle» column_margin=»default» column_direction=»default» column_direction_tablet=»default» column_direction_phone=»default» bg_color=»#262626″ bg_image=»20″ bg_position=»center center» background_image_loading=»skip-lazy-load» bg_repeat=»no-repeat» full_height=»yes» columns_placement=»bottom» scene_position=»center» text_color=»light» text_align=»left» row_border_radius=»none» row_border_radius_applies=»bg» overflow=»visible» advanced_gradient=»linear-gradient(0deg, rgb(0,0,0) 0%, rgba(0,0,0,252) 0%, rgba(0,0,0,0) 43%)» shape_divider_position=»bottom» bg_image_animation=»zoom-out» mobile_disable_bg_image_animation=»true» parallax_bg=»true» parallax_bg_speed=»medium_fast» gradient_type=»advanced» shape_type=»» advanced_gradient_display_type=»linear»][vc_column bottom_padding_desktop=»40px» column_element_direction_desktop=»default» column_element_spacing=»default» desktop_text_alignment=»default» tablet_text_alignment=»default» phone_text_alignment=»default» background_color_opacity=»1″ background_hover_color_opacity=»1″ column_backdrop_filter=»none» column_shadow=»none» column_border_radius=»none» column_link_target=»_self» column_position=»default» gradient_direction=»left_to_right» overlay_strength=»0.3″ width=»1/1″ tablet_width_inherit=»default» animation_type=»default» bg_image_animation=»none»
+- [Política de privacidad](https://animaavataragency.com/privacidad/) - Esta política resume cómo Anima recoge, utiliza y protege los datos personales proporcionados a través de este sitio web. Solo empleamos la información para responder solicitudes y nunca la compartimos con terceros sin consentimiento previo. Puedes solicitar la modificación o eliminación de tus datos escribiendo a privacidad@animaavatarstudio.com.
+- [Contacto](https://animaavataragency.com/contacto-2/) - Comparte tu idea y te proponemos la mejor ruta inmersiva. Nombre Email Mensaje Acepto la política de privacidad y el uso de mis datos para contactar. Enviar
+- [Experiencia Inmersiva](https://animaavataragency.com/experiencia-inmersiva-2/) - Explora nuestra experiencia WebXR desde navegador o visor compatible. Se recomienda conexión estable y dispositivos con soporte WebXR actualizado. [anima_model src=»https://assets.readyplayer.me/Example.glb» alt=»Avatar demo» ar=»true» auto_rotate=»true» camera_controls=»true» exposure=»1.0″ shadow_intensity=»1″ reveal=»interaction» loading=»lazy»] Si accedes desde móvil compatible, podrás activar el modo AR para visualizar al avatar en tu espacio.
+- [Anima Live](https://animaavataragency.com/anima-live-2/) - Anima Live — Crea tu avatar en minutos App en Unreal para generar avatares listos para streaming y VR. Cómo funciona Captura tu referencia o elige una plantilla hiperreal. Personaliza animaciones, vestuario y voz con IA. Exporta a tu plataforma favorita y activa métricas. Características Rig facial avanzado con lipsync automático. Blendshapes optimizados para AR
+- [Cursos](https://animaavataragency.com/cursos-2/) - Aprendizaje práctico y plantillas listas para producción. Catálogo rápido Básico de VR — 10h — Directo — 200 € IA aplicada a Media — 20h — Blended — 500 € Producción XR en Realtime — 16h — Grabado — 350 € FAQ ¿Necesito experiencia previa? Nuestros programas incluyen módulos introductorios para ponerte al día en
+- [Avatares](https://animaavataragency.com/avatares-2/) - Avatares listos para escena, con rig facial, lipsync y blendshapes. [anima_gallery type=»avatar» limit=»12″] Filtra por tecnología: Unreal, Unity, WebGL.
+- [Servicios](https://animaavataragency.com/servicios-3/) - Diseñamos y producimos experiencias digitales para formación, marketing y live. Avatares 3D para streaming Presentadores virtuales listos para platós virtuales. Integración con OTT, webinars y traducción simultánea. Casos: lanzamiento de producto híbrido, feria tecnológica streaming. Asistentes con IA Conocimiento de marca centralizado y escalable. Experiencias multicanal con voz natural y TTS neural. Casos: showroom conversacional,
+- [My account](https://animaavataragency.com/my-account/)
+- [Shop](https://animaavataragency.com/shop/)
+- [Cart](https://animaavataragency.com/cart/)
+- [Checkout](https://animaavataragency.com/checkout/)
+- [Blog List 3](https://animaavataragency.com/blog-list-3/) - Our stories We create AWESOME Blog Design UI vs. UX: What’s the difference? Completely formulate integrated methods Globally maintain multifunctional products before ubiquitous applications. Dynamically procrastinate clicks-and-mortar manufactured products rather than… Mad Sparrow August 9, 2022 2 min read Read More Events Uncategorized UX design is shifting towards realism Efficiently strategize just in time process
+- [Blog List 2](https://animaavataragency.com/blog-list-2/) - Our stories We create AWESOME Blog Design UI vs. UX: What’s the difference? Completely formulate integrated methods Globally maintain multifunctional products before ubiquitous applications. Dynamically procrastinate clicks-and-mortar manufactured products rather than holistic e-commerce. Authoritatively benchmark… Mad Sparrow August 9, 2022 2 min read Read More Events Uncategorized UX design is shifting towards realism Efficiently strategize
+- [Blog List](https://animaavataragency.com/blog-list/) - Our stories We create AWESOME Blog Design UI vs. UX: What’s the difference? Completely formulate integrated methods Globally maintain multifunctional… Mad Sparrow August 9, 2022 2 min read Read More Events Uncategorized UX design is shifting towards realism Efficiently strategize just in time process Globally maintain multifunctional… Mad Sparrow August 9, 2022 2 min read
+- [Blog Default](https://animaavataragency.com/blog-default/) - Our stories We create AWESOME Blog Design UI vs. UX: What’s the difference? Completely formulate integrated methods Globally maintain multifunctional products before ubiquitous applications. Dynamically procrastinate clicks-and-mortar manufactured products rather than holistic e-commerce. Authoritatively benchmark… Mad Sparrow August 9, 2022 2 min read Read More Events Uncategorized UX design is shifting towards realism Efficiently strategize
+- [List Style](https://animaavataragency.com/list-style/) - Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio List Style by Most Theme Portfolio
+- [Blog](https://animaavataragency.com/blog-2/)
+- [Startup Contact](https://animaavataragency.com/startup-contact/) - [vc_row type=»full_width_background» full_screen_row_position=»middle» bg_image=»https://themenectar.com/img/demo-media/unsplash/webp/large-adventure.webp» bg_position=»center center» bg_repeat=»no-repeat» parallax_bg=»true» parallax_bg_speed=»fast» bg_color=»#ffffff» scene_position=»center» text_color=»light» text_align=»left» top_padding=»10%» bottom_padding=»10%» color_overlay=»#0a0a0a» overlay_strength=»0.5″][vc_column column_padding=»no-extra-padding» column_padding_position=»all» background_color_opacity=»1″ background_hover_color_opacity=»1″ column_shadow=»none» width=»1/1″ tablet_text_alignment=»default» phone_text_alignment=»default» column_border_width=»none» column_border_style=»solid»][vc_row_inner equal_height=»yes» content_placement=»middle» column_margin=»default» text_align=»left»][vc_column_inner enable_animation=»true» animation=»fade-in» column_padding=»no-extra-padding» column_padding_position=»all» background_color_opacity=»1″ width=»1/2″ column_border_width=»none» column_border_style=»solid» offset=»vc_col-lg-6 vc_col-md-6 vc_col-xs-12″][vc_column_text css_animation=»fadeInUp» css=».vc_custom_1486500529316{margin-bottom: 15px !important;}»] Wanna chat? [/vc_column_text][split_line_heading animation_type=»default»] Send us your feedback We
+- [Startup About](https://animaavataragency.com/startup-about/) - [vc_row type=»full_width_background» full_screen_row_position=»middle» bg_image=»https://themenectar.com/img/demo-media/unsplash/webp/large-mountains-2.webp» bg_position=»left top» bg_repeat=»no-repeat» parallax_bg=»true» parallax_bg_speed=»fast» bg_color=»#333333″ scene_position=»center» video_bg=»use_video» video_mute=»true» text_color=»light» text_align=»left» top_padding=»13%» bottom_padding=»13%» color_overlay=»#0a0a0a» overlay_strength=»0.5″][vc_column column_padding=»no-extra-padding» column_padding_position=»all» background_color_opacity=»1″ background_hover_color_opacity=»1″ column_shadow=»none» width=»1/2″ tablet_text_alignment=»default» phone_text_alignment=»default» column_border_width=»none» column_border_style=»solid»][vc_custom_heading text=»Our Story» font_container=»tag:h5|text_align:left|color:rgba(255%2C255%2C255%2C0.74)» use_theme_fonts=»yes» css_animation=»fadeInUp»][split_line_heading animation_type=»default»] Let’s Change How We Manage Business [/split_line_heading][vc_row_inner column_margin=»default» text_align=»left»][vc_column_inner enable_animation=»true» animation=»fade-in-from-bottom» column_padding=»no-extra-padding» column_padding_position=»all» background_color_opacity=»1″ width=»5/6″ column_border_width=»none» column_border_style=»solid» delay=»300″][vc_custom_heading text=»Far far
+- [Sample Page](https://animaavataragency.com/sample-page/) - This is an example page. It's different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this: Hi there! I'm a bike messenger
+
+## Mis plantillas
+
+- [Plantilla blog Anima (page fallback)](https://animaavataragency.com/?elementor_library=plantilla-blog-anima-page-fallback)
+- [Home — Anima](https://animaavataragency.com/?elementor_library=home-anima-3) - Avatares y Mundos 3D que conectan con audiencias reales Producción 3D, animación facial y experiencias interactivas en tiempo real. Explorar Anima World Servicios Este es el encabezado Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Este es el encabezado Lorem ipsum dolor sit amet, consectetur
+- [Kit por defecto](https://animaavataragency.com/?elementor_library=kit-por-defecto)
+- [404 — Anima](https://animaavataragency.com/?elementor_library=404-anima) - 404 — Página no encontrada Volvamos al inicio y creemos algo épico. Ir a Inicio
+- [Sobre — Anima](https://animaavataragency.com/?elementor_library=sobre-anima) - Sobre Anima Creamos avatares, animación facial y mundos interactivos que conectan con audiencias reales. Manifiesto Calidad cinematográfica, tiempos ágiles y experiencias accesibles. Equipo Artistas 3D, TDs, devs y productores con experiencia en tiempo real. Partners Ecosistemas Unreal/Unity, streaming y herramientas de IA.
+- [Home — Anima](https://animaavataragency.com/?elementor_library=home-anima) - Avatares y Mundos 3D que conectan con audiencias reales Producción 3D, animación facial y experiencias interactivas en tiempo real. Explorar Anima World Servicios Este es el encabezado Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Este es el encabezado Lorem ipsum dolor sit amet, consectetur
+- [Sobre — Anima](https://animaavataragency.com/?elementor_library=sobre-anima-2) - Sobre Anima Creamos avatares, animación facial y mundos interactivos que conectan con audiencias reales. Manifiesto Calidad cinematográfica, tiempos ágiles y experiencias accesibles. Equipo Artistas 3D, TDs, devs y productores con experiencia en tiempo real. Partners Ecosistemas Unreal/Unity, streaming y herramientas de IA.
+- [Servicios — Hub](https://animaavataragency.com/?elementor_library=servicios-hub) - Servicios 3D y Producción Virtual De avatares y animación facial a producción virtual y experiencias interactivas. Avatares & Personajes 3D Diseño, rigging, shading y export listo. Animación facial & Mocap Captura, cleanup y lip‑sync hiperreal. Producción Virtual Escenarios virtuales en tiempo real. Influencers virtuales & Live Identidad y flujos de directo. Integración Apps/Juegos SDKs, optimización
+- [Home — Anima](https://animaavataragency.com/?elementor_library=home-anima-2) - Avatares y Mundos 3D que conectan con audiencias reales Producción 3D, animación facial y experiencias interactivas en tiempo real. Explorar Anima World Servicios Este es el encabezado Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Este es el encabezado Lorem ipsum dolor sit amet, consectetur
+- [nuevaservicios](https://animaavataragency.com/?elementor_library=nuevaservicios) - y otras plataformas. Emisión multiplataforma simultánea para llegar a más audiencia en directo. VTubers con mocap en tiempo real (rostro, cuerpo y voz). Escenografías digitales y efectos visuales dinámicos en directo. Colaboraciones entre streamers humanos y avatares Monotonectally parallel task cross-unit e-tailers without performance based platforms. Phosfluorescently unleash market-driven niche markets via flexible functionalities. Interacción
+- [avatares servicios](https://animaavataragency.com/?elementor_library=avatares-servicios) - Avatares en directo ​ Nuestros servicios Personajes virtuales que transmiten en Twitch, TikTok, YouTube, Kick y otras plataformas. Emisión multiplataforma simultánea para llegar a más audiencia en directo. VTubers con mocap en tiempo real (rostro, cuerpo y voz). Escenografías digitales y efectos visuales dinámicos en directo. Colaboraciones entre streamers humanos y avatares Monotonectally parallel task
+- [Footer Template](https://animaavataragency.com/?elementor_library=footer-template) - Got a PROJECT IN MIND? Let’s Talk Dribbble @madsparrow_dev Twitter @mad_sparrow Instagram @madsparrow Behance @madsparrow_dev ©2022 Mad Sparrow, All Rights Reserved. Themeforest Premium WordPress Theme.
+- [Default Kit](https://animaavataragency.com/?elementor_library=default-kit)
+
+## Productos
+
+- [Data Chip](https://animaavataragency.com/producto/data-chip/)
+- [Curso Metahuman](https://animaavataragency.com/producto/anima-live/) - Curso - Creación de Metahuman con Unreal Engine.
+- [Nexus Core](https://animaavataragency.com/producto/nexus-core/)
+- [Neural Pack](https://animaavataragency.com/producto/neural-pack/)
+- [animaccionmeta](https://animaavataragency.com/producto/animaccionmeta/) - Aprende a mover tu metahuman de forma dinámica
+- [curso 2](https://animaavataragency.com/producto/curso-2/)
+
+## Projects
+
+- [Influencer Virtual | Serie Z](https://animaavataragency.com/projects/influencer-virtual-serie-z/) - Avatar Metahuman + lipsync IA, voz neural y contenido shortform para TikTok/IG/Twitch. Lanzamiento en 6 semanas con paquete de emotes, outfits y escenas OBS.
+- [Avatar Hiperreal | Campaña X](https://animaavataragency.com/projects/avatar-hiperreal-campana-x/) - Desarrollo de avatar con lipsync y mocap en tiempo real.
+- [Mundo Interactivo | Marca Y](https://animaavataragency.com/projects/mundo-interactivo-marca-y/) - Experiencia web 3D con salas temáticas y eventos.
+- [Portal Holográfico para Metaversos](https://animaavataragency.com/projects/portal-holografico/) - Experiencia inmersiva WebGL.
+- [Gemelo Digital Ciudad Anima](https://animaavataragency.com/projects/gemelo-digital-ciudad/) - IoT + gemelo digital.
+- [AI Studio para marcas visionarias](https://animaavataragency.com/projects/ai-studio/) - IA creativa en tiempo real.
+
+## Courses
+
+- [hola probando](https://animaavataragency.com/courses/hola-probando/)
+
+## Slides
+
+- [Slide demo 1](https://animaavataragency.com/slides/slide-demo-1/) - Slide demostrativa generada en la activación del plugin.
+- [Slide demo 2](https://animaavataragency.com/slides/slide-demo-2/) - Slide demostrativa generada en la activación del plugin.
+- [Slide demo 3](https://animaavataragency.com/slides/slide-demo-3/) - Slide demostrativa generada en la activación del plugin.
+- [Aprende con proyectos](https://animaavataragency.com/slides/aprende-con-proyectos/) - Capacitación XR profesional
+- [Producción XR completa](https://animaavataragency.com/slides/produccion-xr-completa/) - Pipeline inmersivo llave en mano
+- [Conoce a Nova](https://animaavataragency.com/slides/conoce-a-nova/) - Avatar hiperreal listo para directo
+
+## Cursos
+
+- [Creación Metahuman](https://animaavataragency.com/curso/metahuman/) - Curso básico de creación de Metahumanos en Epic Games
+- [Programación orientada a streaming](https://animaavataragency.com/curso/programacion-orientada-a-streaming/) - Dale vida a tus lives con la mejor interactividad
+- [Animación Metahuman](https://animaavataragency.com/curso/animacion-metahuman/) - Aprende a moverte dinámicamente
+
+## Posts del Nexus
+
+- [Saludos](https://animaavataragency.com/nexus_post/saludos/) - Vamos a ir dejando huellas por aquí antes de que se masifique. Fuimos los primeros 🤜🤛
+- [Admiración](https://animaavataragency.com/nexus_post/admiracion/) - Cada vez que entro está todo cambiado y mejorado el avance súper notorio 👍🏾
+- [Nueva cancion](https://animaavataragency.com/nexus_post/nueva-cancion/) - Otro nuevo tema para el día de hoy está vez toca punk
+- [Nuevos temas](https://animaavataragency.com/nexus_post/nuevos-temas/) - Nuevas canciones en mi tiki
+- [Saludos a todos](https://animaavataragency.com/nexus_post/saludos-a-todos/) - Buenos días , que se siente al dejar de ser un Homo Sapiens?
+- [Reuniones semanales](https://animaavataragency.com/nexus_post/reuniones-semanales/) - Reunión una vez por semana para ver avances
+- [Inicio](https://animaavataragency.com/nexus_post/inicio/) - Algo grande se acerca
+
+## Categorías
+
+- [Sin categoría](https://animaavataragency.com/category/sin-categoria/)
+- [Tendencias](https://animaavataragency.com/category/tendencias/)
+- [Eventos](https://animaavataragency.com/category/eventos/)
+- [IA](https://animaavataragency.com/category/ia/)
+- [Técnica](https://animaavataragency.com/category/tecnica/)
+- [Marketing](https://animaavataragency.com/category/marketing/)
+
+## Categorías del producto
+
+- [Sin categorizar](https://animaavataragency.com/categoria-producto/sin-categorizar/)
+- [cursos](https://animaavataragency.com/categoria-producto/cursos/)
+
+## Nivel
+
+- [Inicial](https://animaavataragency.com/nivel/inicial/)
+
+## Modalidad
+
+- [Grabado](https://animaavataragency.com/modalidad/grabado/)
+
+## Tecnología
+
+- [Unity](https://animaavataragency.com/tecnologia/unity/)
+- [Unreal](https://animaavataragency.com/tecnologia/unreal/)
+- [WebGL](https://animaavataragency.com/tecnologia/webgl/)
+

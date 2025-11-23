@@ -1,0 +1,1 @@
+Nõi<?php exit; ?>a:2:{s:7:"content";a:4:{s:12:"anima_client";a:1:{i:0;s:15:"Neon Collective";}s:10:"anima_date";a:1:{i:0;s:10:"Marzo 2024";}s:14:"anima_services";a:1:{i:0;s:42:"Inteligencia artificial, Pipelines meshopt";}s:10:"anima_kpis";a:1:{i:0;s:26:"98% satisfacci√≥n creativa";}}s:15:"key_version_all";i:5;}

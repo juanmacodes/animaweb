@@ -1,0 +1,14 @@
+/* Minimal, sin popups ni links, todo inline */
+.anima-portfolio{display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:24px}
+.anima-portfolio__item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .2s ease, box-shadow .2s ease}
+.anima-portfolio__item:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.4)}
+.anima-portfolio__cover img{width:100%;height:auto;border-radius:12px;display:block}
+.anima-portfolio__title{margin:.75rem 0 .25rem;color:#e8f0ff;font-size:1.05rem}
+.anima-portfolio__chips{display:flex;gap:.5rem;flex-wrap:wrap;margin:.25rem 0 .5rem}
+.anima-portfolio__chips .chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#cfe0ff;padding:.35rem .6rem;border-radius:999px;font-size:.85rem}
+.anima-portfolio__excerpt{color:#a9b6d1;margin:.35rem 0 .5rem}
+.anima-portfolio__gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.anima-portfolio__thumb img{width:100%;height:auto;border-radius:8px;display:block}
+.anima-portfolio__more{display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.18);color:#9fb0c7;font-weight:700}
+@media (max-width:900px){ .anima-portfolio{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:560px){ .anima-portfolio{grid-template-columns:1fr} }

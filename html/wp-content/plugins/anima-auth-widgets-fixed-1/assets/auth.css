@@ -1,0 +1,13 @@
+/* Estilos mínimos */
+.anima-auth{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:16px}
+.anima-auth .field{margin-bottom:10px}
+.anima-auth label{display:block;margin-bottom:6px;color:#cfe0ff;font-size:.92rem}
+.anima-auth input[type=text],
+.anima-auth input[type=email],
+.anima-auth input[type=password]{width:100%;padding:.55rem .7rem;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0f1722;color:#e8f0ff}
+.anima-auth .button, .anima-auth input[type=submit]{display:inline-block;margin-top:.35rem;background:#0ea5e9;color:#03111b;border:none;border-radius:999px;padding:.55rem 1rem;font-weight:700;cursor:pointer;text-decoration:none}
+.anima-auth-errors{background:#2b1f24;border:1px solid #7a2a33;color:#ffd8df;border-radius:12px;padding:10px;margin-bottom:10px}
+.anima-auth .anima-auth-links{margin-top:8px}
+.anima-access-wrap{display:grid;gap:16px}
+.anima-access-wrap.cols-two{grid-template-columns:repeat(2,1fr)}
+@media(max-width:720px){.anima-access-wrap.cols-two{grid-template-columns:1fr}}

@@ -1,0 +1,77 @@
+/* 
+ * @author    ThemePunch <info@themepunch.com>
+ * @link      http://www.themepunch.com/
+ * @copyright 2022 ThemePunch
+*/
+
+.tp-shapewrapper.tp-fluiddynamics {
+  overflow: hidden;
+}
+
+.form_inside_title {
+  margin-top: 20px;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: 25px;
+}
+
+.wpar_longlabel {
+  overflow: visible;
+}
+
+#fluiddynamics_particles .miniprevimage_wrap > .material-icons {
+  opacity: 0;
+}
+
+.settingsmenu_wrapbtn.disabled {
+  background: #35383d;
+  color: rgba(183, 187, 192, 0.4);
+  pointer-events: none;
+}
+
+#rbm_addon_fluiddynamics {
+  width: 755px;
+}
+
+.layerinput.easyinit.shortfield.callEvent.valueduekeyboard {
+  background-color: #2a2c2f;
+  color: #b7bbc0;
+  font-weight: 500;
+  margin-bottom: 10px;
+  border: 1px solid #2a2c2f;
+}
+
+.gP_infobox {
+  display: flex;
+  padding: 20px;
+}
+
+#gP_infoIcon {
+  margin-right: 15px;
+  color: #b7bbc0;
+  padding-top: 7px;
+}
+
+.gP_mainContent {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.gP_amountSelector {
+  padding: 0px 20px;
+}
+
+.material-icons.vmi {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  font-size: 20px;
+  padding-top: 5px;
+}
+
+#randSizeMaxLabel{
+  width: 24px;
+  margin-left: 5px;
+  margin-right: 10px;
+}

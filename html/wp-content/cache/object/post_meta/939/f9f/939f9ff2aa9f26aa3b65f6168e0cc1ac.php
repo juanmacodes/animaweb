@@ -1,0 +1,1 @@
+N›i<?php exit; ?>a:2:{s:7:"content";a:2:{s:15:"anima_slide_url";a:1:{i:0;s:7:"/cursos";}s:13:"_thumbnail_id";a:1:{i:0;s:4:"1019";}}s:15:"key_version_all";i:5;}

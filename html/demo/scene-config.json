@@ -1,0 +1,11 @@
+{
+  "renderer": { "clearColor": "#111318" },
+  "camera": { "type": "perspective", "fov": 50, "near": 0.1, "far": 500, "position": [0, 1.6, 3] },
+  "controls": { "type": "orbit", "target": [0, 1.2, 0], "enableDamping": true },
+  "assets": [
+    { "id": "avatar", "type": "gltf", "url": "/demo/models/avatar.glb" }
+  ],
+  "lights": [
+    { "type": "hemisphere", "skyColor": "#ffffff", "groundColor": "#222233", "intensity": 0.7 }
+  ]
+}

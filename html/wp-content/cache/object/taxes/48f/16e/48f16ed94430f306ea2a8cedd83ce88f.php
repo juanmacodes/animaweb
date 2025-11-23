@@ -1,0 +1,1 @@
+Fªi<?php exit; ?>a:2:{s:7:"content";a:2:{i:0;O:8:"stdClass":3:{s:17:"tax_rate_class_id";s:1:"2";s:4:"name";s:9:"Tasa cero";s:4:"slug";s:9:"tasa-cero";}i:1;O:8:"stdClass":3:{s:17:"tax_rate_class_id";s:1:"1";s:4:"name";s:13:"Tasa reducida";s:4:"slug";s:13:"tasa-reducida";}}s:15:"key_version_all";i:7;}

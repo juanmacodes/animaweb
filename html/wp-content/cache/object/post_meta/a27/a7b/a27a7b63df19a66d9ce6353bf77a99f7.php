@@ -1,0 +1,1 @@
+Nõi<?php exit; ?>a:2:{s:7:"content";a:4:{s:12:"anima_client";a:1:{i:0;s:12:"Orbital Labs";}s:10:"anima_date";a:1:{i:0;s:9:"Mayo 2024";}s:14:"anima_services";a:1:{i:0;s:33:"Metaverso, Streaming volum√©trico";}s:10:"anima_kpis";a:1:{i:0;s:31:"+140% engagement, 2.3M sesiones";}}s:15:"key_version_all";i:5;}

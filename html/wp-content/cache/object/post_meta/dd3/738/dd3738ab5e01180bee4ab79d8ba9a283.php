@@ -1,0 +1,1 @@
+N�i<?php exit; ?>a:2:{s:7:"content";a:4:{s:12:"anima_client";a:1:{i:0;s:13:"Ciudad Futura";}s:10:"anima_date";a:1:{i:0;s:10:"Abril 2024";}s:14:"anima_services";a:1:{i:0;s:34:"IoT, Visualización 3D, Analítica";}s:10:"anima_kpis";a:1:{i:0;s:40:"-22% consumo energético, +18% movilidad";}}s:15:"key_version_all";i:5;}

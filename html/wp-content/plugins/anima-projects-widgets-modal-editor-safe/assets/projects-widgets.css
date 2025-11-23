@@ -1,0 +1,11 @@
+/* Estilos mínimos */
+.anima-projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.anima-project-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;transition:transform .2s,box-shadow .2s}
+.anima-project-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.anima-project-card .project-title{margin:.75rem 0 .25rem;font-size:1.05rem;line-height:1.35}
+.anima-project-card .project-title a,
+.anima-project-card .project-title span{color:#e8f0ff;text-decoration:none}
+.anima-project-card .project-cta-button,
+.anima-project-card .project-open-modal{display:inline-block;margin-top:.5rem;margin-right:.5rem;padding:.45rem .8rem;border-radius:999px;background:#0ea5e9;color:#03111b;text-decoration:none;font-weight:600;border:none;cursor:pointer}
+.anima-project-card .disabled{opacity:.6;cursor:default}
+.thumb-wrap img{width:100%;height:auto;display:block;border-radius:12px}

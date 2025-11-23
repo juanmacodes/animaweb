@@ -1,0 +1,34 @@
+
+---Archivos descargados---
+Los archivos de importación para most Demo Import ¡han sido descargados correctamente!
+Tiempo de ejecución máximo inicial = 90
+Información de archivos:
+URL del sitio = http://animaavataragency.com
+Archivo de datos = /srv/vhost/animaavataragency.com/home/html/wp-content/uploads/2025/07/demo-content-import-file_2025-07-16__08-42-55.xml
+Archivo de widget = /srv/vhost/animaavataragency.com/home/html/wp-content/uploads/2025/07/demo-widgets-import-file_2025-07-16__08-42-55.json
+Archivo del personalizador = /srv/vhost/animaavataragency.com/home/html/wp-content/uploads/2025/07/demo-customizer-import-file_2025-07-16__08-42-55.dat
+Archivos de Redux:
+ ¡no definido!
+
+---Importando los widgets---
+Blog Sidebar : 
+
+Most: Recent Thumbnail Posts - Sin título - Importado
+Categorías - Sin título - Importado
+Nube de etiquetas - Sin título - Importado
+Formulario de suscripción de MailChimp - Newsletter - Importado
+
+Shop Sidebar : 
+
+Filtrar productos por precio - Filter by price - Importado
+Lista de productos - Products - Importado
+Categorías de producto - Product categories - Importado
+Nube de etiquetas de productos - Product tags - Importado
+
+
+
+---Importación de los ajustes del personalizador---
+¡Importación de los ajustes del personalizador finalizado!
+
+---ocdi/after_import---
+

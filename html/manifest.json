@@ -1,0 +1,21 @@
+{
+  "name": "Anima Avatar Agency",
+  "short_name": "Anima",
+  "description": "Tu interfaz para el Metaverso de Anima Live y Anima World.",
+  "start_url": "/mi-cuenta/?view=dashboard",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#BC13FE",
+  "icons": [
+    {
+      "src": "http://animaavataragency.com/wp-content/uploads/2025/11/app_icon_192_pro.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "http://animaavataragency.com/wp-content/uploads/2025/11/app_icon_512_pro.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+/ªi<?php exit; ?>a:2:{s:7:"content";a:3:{s:6:"getTec";a:1:{s:6:"engine";s:3:"SR7";}s:7:"version";s:5:"6.2.0";s:8:"tracking";s:10:"2025-12-11";}s:15:"key_version_all";i:6;}

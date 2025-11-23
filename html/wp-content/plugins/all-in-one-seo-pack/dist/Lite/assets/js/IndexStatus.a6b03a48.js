@@ -1,0 +1,1 @@
+import{S as n}from"./CheckSolid.ae0a962b.js";import{o as t,c as o,m as r,T as e}from"./runtime-core.esm-bundler.4f558f23.js";const s={class:"aioseo-index-status"},_={__name:"IndexStatus",setup(a){return(c,u)=>(t(),o("div",s,[r(e(n))]))}};export{_};

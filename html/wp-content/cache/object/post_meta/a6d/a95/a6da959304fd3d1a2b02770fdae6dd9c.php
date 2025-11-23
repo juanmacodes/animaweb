@@ -1,0 +1,1 @@
+Fùi<?php exit; ?>a:2:{s:7:"content";a:5:{s:10:"_edit_lock";a:1:{i:0;s:12:"1763565036:1";}s:13:"_thumbnail_id";a:1:{i:0;s:4:"8548";}s:10:"_edit_last";a:1:{i:0;s:1:"1";}s:17:"anima_badge_color";a:1:{i:0;s:7:"#6f65ff";}s:18:"anima_badge_points";a:1:{i:0;s:2:"20";}}s:15:"key_version_all";i:5;}
